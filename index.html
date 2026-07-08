@@ -309,6 +309,12 @@
             gap: 24px;
         }
 
+        /* min-width:0 lets the column shrink below the 720px map's intrinsic width;
+           without it the whole single-column layout gets pushed wider than the phone screen */
+        .main-content {
+            min-width: 0;
+        }
+
         @media (min-width: 1024px) {
             .dashboard-grid {
                 grid-template-columns: 380px 1fr;
@@ -317,16 +323,6 @@
                 display: grid;
                 grid-template-columns: 1fr;
                 gap: 24px;
-            }
-            .map-grid-container {
-                display: grid;
-                grid-template-columns: 720px 1fr;
-                gap: 24px;
-                align-items: start;
-                width: 100%;
-            }
-            .regions-stats-panel {
-                grid-template-columns: 1fr !important;
             }
         }
 
@@ -667,12 +663,6 @@
             padding-bottom: 8px;
         }
 
-        @media (min-width: 640px) {
-            .map-scroll-wrapper {
-                justify-content: center;
-            }
-        }
-
         .map-scroll-hint {
             display: none;
             font-size: 11px;
@@ -698,6 +688,9 @@
             width: 100%;
             min-width: 720px;
             max-width: 720px;
+            /* auto margins center the map when it fits and fall back to left-aligned
+               (scrollable) when it overflows; justify-content:center would clip the left edge */
+            margin: 0 auto;
             /* Fixed height keeps 1fr rows at ~41.7px square cells; cell aspect-ratio
                would create a track-sizing feedback loop in some engines */
             height: 486px;
