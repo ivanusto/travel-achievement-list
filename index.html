@@ -881,6 +881,38 @@
             border-color: var(--border-color-active);
         }
 
+        .lang-switch-container {
+            display: inline-flex;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 3px;
+            gap: 2px;
+            align-items: center;
+        }
+
+        .btn-lang {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-lang.active {
+            background: var(--border-color-active);
+            color: #fff !important;
+        }
+
+        .btn-lang:hover:not(.active) {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+
         .stats-quick-filters {
             display: flex;
             gap: 12px;
@@ -1628,16 +1660,18 @@
                 <p data-i18n="subtitle">探索全球足跡 • 解鎖冒險徽章 • 完成你的世界旅行手帳</p>
             </div>
             <div class="header-controls">
-                <select id="langSelect" class="select-filter" onchange="changeLanguage(this.value)" style="padding: 10px 14px; font-weight: 700; height: 38px;">
-                    <option value="zh-TW">繁體中文</option>
-                    <option value="en">English</option>
+                <div class="lang-switch-container">
+                    <button class="btn-lang" id="lang-zh" onclick="changeLanguage('zh-TW')">繁中</button>
+                    <button class="btn-lang" id="lang-en" onclick="changeLanguage('en')">EN</button>
+                </div>
+                <select class="select-filter project-selector" id="projectSelector" onchange="if(this.value) window.open(this.value, '_self')" style="width: auto; font-weight: 700;">
+                    <option value="" disabled selected data-i18n="projectSelectorPlaceholder">❖ 更多成就系統...</option>
+                    <option value="https://ivanusto.github.io/life-achievement-list/" data-i18n="projectLifeLink">🌱 人生成就系統</option>
+                    <option value="https://ivanusto.github.io/developer-achievement-list/" data-i18n="projectDevLink">💻 開發者成就系統</option>
+                    <option value="https://ivanusto.github.io/taiwan-travel-achievement-list/" data-i18n="projectTaiwanLink">🗺️ 台灣旅行成就系統</option>
+                    <option value="https://ivanusto.github.io/japan-travel-achievement-list/" data-i18n="projectJapanLink">🗾 日本旅行成就系統</option>
+                    <option value="https://ivanusto.github.io/travel-achievement-list/" data-i18n="projectWorldLink">✈️ 觀光旅行成就系統</option>
                 </select>
-                <a class="btn" href="https://ivanusto.github.io/taiwan-travel-achievement-list/" target="_blank" rel="noreferrer noopener" style="text-decoration:none;">
-                    <svg class="taiwan-svg" viewBox="0 0 24 24" style="width: 1em; height: 1em; vertical-align: -0.15em; fill: currentColor; display: inline-block;"><path d="M 13,3 C 14,5 17,7 17,9 C 17,12 14,16 10,21 C 9,21 8.5,20 8.5,19 C 8.5,17 7.5,15 7,13 C 6.5,11 11,5 13,3 Z" /></svg> <span data-i18n="taiwanTravelLink">台灣旅行成就系統</span>
-                </a>
-                <a class="btn" href="https://ivanusto.github.io/japan-travel-achievement-list/" target="_blank" rel="noreferrer noopener" style="text-decoration:none;">
-                    <span>🗾</span> <span data-i18n="japanTravelLink">日本旅行成就系統</span>
-                </a>
                 <button class="btn btn-accent" onclick="generateShareCard()">
                     <span>📤</span> <span data-i18n="shareCardBtn">一鍵分享成就卡</span>
                 </button>
@@ -1821,19 +1855,35 @@
         </div>
 
         <footer>
-            <div class="footer-social-links">
-                <a href="https://yblog.org/" target="_blank" rel="noreferrer noopener">Yblog.org 優格網</a>
-                <a href="https://www.threads.net/@ivanusto" target="_blank" rel="noreferrer noopener">ivanusto @ threads</a>
-                <a href="https://x.com/ivanusto" target="_blank" rel="noreferrer noopener">ivanusto @ twitter</a>
-                <a href="https://www.plurk.com/ivanusto" target="_blank" rel="noreferrer noopener">ivanusto @ plurk</a>
-                <a href="https://www.instagram.com/ivanusto/" target="_blank" rel="noreferrer noopener">ivanusto @ instagram</a>
-                <a href="https://www.facebook.com/ivanusto" target="_blank" rel="noreferrer noopener">ivanusto @ facebook</a>
-                <a href="https://ivanusto.github.io/taiwan-travel-achievement-list/" target="_blank" rel="noreferrer noopener"><svg class="taiwan-svg" viewBox="0 0 24 24" style="width: 1em; height: 1em; vertical-align: -0.15em; fill: currentColor; display: inline-block;"><path d="M 13,3 C 14,5 17,7 17,9 C 17,12 14,16 10,21 C 9,21 8.5,20 8.5,19 C 8.5,17 7.5,15 7,13 C 6.5,11 11,5 13,3 Z" /></svg> <span data-i18n="taiwanTravelLink">台灣旅行成就系統</span></a>
-                <a href="https://ivanusto.github.io/japan-travel-achievement-list/" target="_blank" rel="noreferrer noopener">🗾 <span data-i18n="japanTravelLink">日本旅行成就系統</span></a>
-                <a href="https://ivanusto.github.io/travel-achievement-list/" target="_blank" rel="noreferrer noopener">🌍 <span data-i18n="earthTravelLink">地球旅行成就系統</span></a>
+            <div class="footer-social-links" style="flex-direction: column; gap: 12px; align-items: center; width: 100%;">
+                <div class="footer-projects-links" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; font-size: 13px; font-weight: 700;">
+                    <a href="https://ivanusto.github.io/life-achievement-list/">🌱 <span data-i18n="projectLifeLink">人生成就系統</span></a>
+                    <span style="color: var(--border-color); user-select: none;">|</span>
+                    <a href="https://ivanusto.github.io/developer-achievement-list/">💻 <span data-i18n="projectDevLink">開發者成就系統</span></a>
+                    <span style="color: var(--border-color); user-select: none;">|</span>
+                    <a href="https://ivanusto.github.io/taiwan-travel-achievement-list/">🗺️ <span data-i18n="projectTaiwanLink">台灣旅行成就系統</span></a>
+                    <span style="color: var(--border-color); user-select: none;">|</span>
+                    <a href="https://ivanusto.github.io/japan-travel-achievement-list/">🗾 <span data-i18n="projectJapanLink">日本旅行成就系統</span></a>
+                    <span style="color: var(--border-color); user-select: none;">|</span>
+                    <a href="https://ivanusto.github.io/travel-achievement-list/">✈️ <span data-i18n="projectWorldLink">觀光旅行成就系統</span></a>
+                </div>
+                <div class="footer-sns-links" style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; font-size: 13px; font-weight: 700; margin-top: 4px;">
+                    <a href="https://yblog.org/" target="_blank" rel="noreferrer noopener">✍️ Yblog</a>
+                    <span style="color: var(--border-color); user-select: none;">•</span>
+                    <a href="https://www.threads.net/@ivanusto" target="_blank" rel="noreferrer noopener">🧵 Threads</a>
+                    <span style="color: var(--border-color); user-select: none;">•</span>
+                    <a href="https://x.com/ivanusto" target="_blank" rel="noreferrer noopener">🐦 X / Twitter</a>
+                    <span style="color: var(--border-color); user-select: none;">•</span>
+                    <a href="https://www.plurk.com/ivanusto" target="_blank" rel="noreferrer noopener">💬 Plurk</a>
+                    <span style="color: var(--border-color); user-select: none;">•</span>
+                    <a href="https://www.instagram.com/ivanusto/" target="_blank" rel="noreferrer noopener">📸 Instagram</a>
+                    <span style="color: var(--border-color); user-select: none;">•</span>
+                    <a href="https://www.facebook.com/ivanusto" target="_blank" rel="noreferrer noopener">👤 Facebook</a>
+                </div>
             </div>
-            <div class="footer-credit" data-i18n="footerCredit">
-                © 2026 地球旅行成就系統. All rights reserved. Created with 💖 for World Travelers.
+            <div class="footer-credit" data-i18n="footerCreditUnified">
+                © 2026 Life Achievement Lists • Created by ivanusto. All rights reserved.<br>
+                進度會自動儲存在您瀏覽器的本地快取（LocalStorage）中，無後端伺服器，確保您的隱私。
             </div>
         </footer>
     </div>
@@ -2000,7 +2050,14 @@
                 "catLabel": "分類：",
                 "showcaseEmptyLabel": "尚無解鎖此欄位之高級成就，趕快去旅行吧！",
                 "shareCardFooter": "本成就卡由「地球旅行成就系統」產出",
-                "shareText": "我在「地球旅行成就系統」解鎖了 {completed}/{total} 項成就、踩點 {visited}/{countries} 個國家/地區！快來挑戰你的全球旅行足跡 🌍"
+                "shareText": "我在「地球旅行成就系統」解鎖了 {completed}/{total} 項成就、踩點 {visited}/{countries} 個國家/地區！快來挑戰你的全球旅行足跡 🌍",
+                "projectSelectorPlaceholder": "❖ 切換成就系統...",
+                "projectLifeLink": "人生成就系統",
+                "projectDevLink": "開發者成就系統",
+                "projectTaiwanLink": "台灣旅行成就系統",
+                "projectJapanLink": "日本旅行成就系統",
+                "projectWorldLink": "觀光旅行成就系統",
+                "footerCreditUnified": "© 2026 Life Achievement Lists • Created by ivanusto. All rights reserved.<br>進度會自動儲存在您瀏覽器的本地快取（LocalStorage）中，無後端伺服器，確保您的隱私。"
             },
             "en": {
                 "title": "🌍 Earth Travel Achievements",
@@ -2483,7 +2540,14 @@
                 "ach-name-265": "Waitomo Black Water Rafting 🌟", "ach-desc-265": "Tube down a pitch-dark underground river in Waitomo beneath a starry sky of tens of thousands of glowworms.",
                 "ach-name-266": "Overseas Marathon Finisher 🏃", "ach-desc-266": "Run all 42.195 km of a full marathon abroad — Tokyo, Berlin, or New York — carried by foreign cheers.",
                 "ach-name-267": "Glacier Hike on Ancient Ice 🧊", "ach-desc-267": "Strap on crampons at Vatnajökull or Fox Glacier and walk with a guide among crevasses and ancient blue ice.",
-                "ach-name-268": "Century-Old Book Find 📚", "ach-desc-268": "Hunt the green bouquiniste boxes on the Seine or Charing Cross Road and buy a 100-year-old book or first edition."
+                "ach-name-268": "Century-Old Book Find 📚", "ach-desc-268": "Hunt the green bouquiniste boxes on the Seine or Charing Cross Road and buy a 100-year-old book or first edition.",
+                "projectSelectorPlaceholder": "❖ Switch Achievements...",
+                "projectLifeLink": "Life Achievements",
+                "projectDevLink": "Developer Achievements",
+                "projectTaiwanLink": "Taiwan Travel Achievements",
+                "projectJapanLink": "Japan Travel Achievements",
+                "projectWorldLink": "Global Travel Achievements",
+                "footerCreditUnified": "© 2026 Life Achievement Lists • Created by ivanusto. All rights reserved.<br>Progress is saved locally on your browser (LocalStorage) with complete privacy."
             }
         };
 
@@ -5812,16 +5876,18 @@
 
         // --- 8. Level & Title System ---
         function getLevelDetails(count) {
-            let title = "🌱 旅行初心者";
             let level = Math.floor(count / 10);
-            
-            if (count >= 0 && count <= 15) title = "🌱 旅行初心者";
-            else if (count >= 16 && count <= 45) title = "🎒 世界旅人";
-            else if (count >= 46 && count <= 90) title = "✈ 冒險探索家";
-            else if (count >= 91 && count <= 140) title = "🌍 傳奇探險家";
-            else if (count >= 141 && count <= 200) title = "👑 環球旅行家";
-            else if (count > 200) title = "🌌 宇宙級旅行神";
-            
+
+            let titleIdx = 0;
+            if (count >= 16 && count <= 45) titleIdx = 1;
+            else if (count >= 46 && count <= 90) titleIdx = 2;
+            else if (count >= 91 && count <= 140) titleIdx = 3;
+            else if (count >= 141 && count <= 200) titleIdx = 4;
+            else if (count > 200) titleIdx = 5;
+
+            const zhTitles = ["🌱 旅行初心者", "🎒 世界旅人", "✈ 冒險探索家", "🌍 傳奇探險家", "👑 環球旅行家", "🌌 宇宙級旅行神"];
+            const title = getTranslation("levelTitle" + titleIdx, zhTitles[titleIdx]);
+
             return { title, level };
         }
 
@@ -6590,7 +6656,7 @@
             if (!c) return;
             c.done = !c.done;
             if (c.done) {
-                showNotification("成就解除！", c.name, "🌟");
+                showNotification(getTranslation("achUnlockTitle", "成就解除！"), c.name, "🌟");
             }
             saveState();
             updateUI();
@@ -6598,13 +6664,13 @@
 
         function openCustomAchModal(editId = null) {
             if (editId === null && appState.customAchievements.length >= CUSTOM_ACH_LIMIT) {
-                showNotification("已達上限", `自訂成就最多 ${CUSTOM_ACH_LIMIT} 個`, "⚠️");
+                showNotification(getTranslation("customAchLimitTitle", "已達上限"), getTranslation("customAchLimitDesc", "自訂成就最多 {limit} 個").replace("{limit}", CUSTOM_ACH_LIMIT), "⚠️");
                 return;
             }
             editingCustomAchId = editId;
             const editing = editId !== null ? appState.customAchievements.find(c => c.id === editId) : null;
 
-            document.getElementById('customAchModalTitle').textContent = editing ? '✏️ 編輯自訂成就' : '🌟 新增自訂成就';
+            document.getElementById('customAchModalTitle').textContent = editing ? getTranslation("customAchModalTitleEdit", '✏️ 編輯自訂成就') : getTranslation("customAchModalTitleAdd", '🌟 新增自訂成就');
             document.getElementById('customAchName').value = editing ? editing.name : '';
             document.getElementById('customAchDesc').value = editing ? editing.desc : '';
             document.getElementById('customAchDiff').value = editing ? String(editing.diff) : '3';
@@ -6620,7 +6686,7 @@
         function saveCustomAchievement() {
             const name = document.getElementById('customAchName').value.trim().slice(0, 30);
             if (!name) {
-                alert('請輸入成就名稱！');
+                alert(getTranslation("customAchNameRequired", '請輸入成就名稱！'));
                 return;
             }
             const desc = document.getElementById('customAchDesc').value.trim().slice(0, 60);
@@ -6635,7 +6701,7 @@
                 }
             } else {
                 appState.customAchievements.push({ id: Date.now(), name, desc, diff, done: false });
-                showNotification("已建立自訂成就", name, "🌟");
+                showNotification(getTranslation("customAchAddTitle", "已建立自訂成就"), name, "🌟");
             }
 
             closeCustomAchModal();
@@ -6646,7 +6712,7 @@
         function deleteCustomAchievement(id) {
             const c = appState.customAchievements.find(x => x.id === id);
             if (!c) return;
-            if (!confirm(`確定要刪除自訂成就「${c.name}」嗎？`)) return;
+            if (!confirm(getTranslation("customAchDeleteConfirm", "確定要刪除自訂成就「{name}」嗎？").replace("{name}", c.name))) return;
             appState.customAchievements = appState.customAchievements.filter(x => x.id !== id);
             saveState();
             updateUI();
@@ -6659,7 +6725,7 @@
 
             if (idx === -1) {
                 appState.checkedAchievements.push(id);
-                showNotification("成就解除！", ach.name, "🏆");
+                showNotification(getTranslation("achUnlockTitle", "成就解除！"), getTranslation("ach-name-" + id, ach.name), "🏆");
             } else {
                 appState.checkedAchievements.splice(idx, 1);
             }
@@ -6672,7 +6738,7 @@
             if (!appState.checkedAchievements.includes(id)) {
                 appState.checkedAchievements.push(id);
                 const ach = achievementsData.find(a => a.id === id);
-                showNotification("成就解除！", ach.name, "🏆");
+                showNotification(getTranslation("achUnlockTitle", "成就解除！"), getTranslation("ach-name-" + id, ach.name), "🏆");
             }
         }
 
@@ -6685,18 +6751,21 @@
                 const badgeEl = document.getElementById(`badge-${badge.id}`);
 
                 if (badgeEl) {
+                    const badgeName = getTranslation("badge-name-" + badge.id, badge.name);
+                    const badgeDesc = getTranslation("badge-desc-" + badge.id, badge.desc);
                     if (stat.unlocked) {
                         if (!badgeEl.classList.contains('unlocked')) {
                             badgeEl.classList.add('unlocked');
                             if (!silent) {
-                                showNotification("解鎖榮譽徽章！", `${badge.emoji} [${badge.name}] 已加入收藏牆`, "🏆");
+                                const badgeDescPattern = getTranslation("badgeUnlockDesc", "{emoji} [{name}] 已加入收藏牆");
+                                showNotification(getTranslation("badgeUnlockTitle", "解鎖榮譽徽章！"), badgeDescPattern.replace("{emoji}", badge.emoji).replace("{name}", badgeName), "🏆");
                             }
                         }
                         activeCount++;
                     } else {
                         badgeEl.classList.remove('unlocked');
                     }
-                    badgeEl.setAttribute('data-tooltip', `${badge.emoji} ${badge.name}: ${badge.desc} (${stat.count}/${stat.total})`);
+                    badgeEl.setAttribute('data-tooltip', `${badge.emoji} ${badgeName}: ${badgeDesc} (${stat.count}/${stat.total})`);
                 }
             });
 
@@ -6728,7 +6797,7 @@
             document.getElementById('playerLevelDisplay').textContent = `LEVEL ${lvlDetails.level}`;
             document.getElementById('playerTitle').textContent = lvlDetails.title;
             
-            const xpText = `${completedCount} / ${totals.total} 成就`;
+            const xpText = `${completedCount} / ${totals.total} ${getTranslation("xpDisplaySuffix", "成就")}`;
             document.getElementById('playerXpDisplay').textContent = xpText;
             
             const pctXP = Math.round((completedCount / totals.total) * 100);
@@ -6744,6 +6813,13 @@
             if (document.getElementById('mapChecklistTabContent') && !document.getElementById('mapChecklistTabContent').classList.contains('hidden-element')) {
                 renderCountryChecklist();
             }
+
+            // Update language switcher buttons active states
+            document.querySelectorAll('.btn-lang').forEach(btn => {
+                const btnId = btn.id;
+                const langMap = { 'lang-zh': 'zh-TW', 'lang-en': 'en', 'lang-ja': 'ja', 'lang-ko': 'ko' };
+                btn.classList.toggle('active', appState.language === langMap[btnId]);
+            });
         }
 
         // --- 18. Share Achievement Card Exporter (Canvas) ---
