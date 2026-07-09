@@ -1624,28 +1624,32 @@
     <div class="app-wrapper">
         <header>
             <div class="header-title-section">
-                <h1>🌍 地球旅行成就系統</h1>
-                <p>探索全球足跡 • 解鎖冒險徽章 • 完成你的世界旅行手帳</p>
+                <h1 data-i18n="title">🌍 地球旅行成就系統</h1>
+                <p data-i18n="subtitle">探索全球足跡 • 解鎖冒險徽章 • 完成你的世界旅行手帳</p>
             </div>
             <div class="header-controls">
+                <select id="langSelect" class="select-filter" onchange="changeLanguage(this.value)" style="padding: 10px 14px; font-weight: 700; height: 38px;">
+                    <option value="zh-TW">繁體中文</option>
+                    <option value="en">English</option>
+                </select>
                 <a class="btn" href="https://ivanusto.github.io/japan-travel-achievement-list/" target="_blank" rel="noreferrer noopener" style="text-decoration:none;">
-                    <span>🗾</span> 日本旅行成就系統
+                    <span>🗾</span> <span data-i18n="japanTravelLink">日本旅行成就系統</span>
                 </a>
                 <button class="btn btn-accent" onclick="generateShareCard()">
-                    <span>📸</span> 一鍵分享成就卡
+                    <span>📤</span> <span data-i18n="shareCardBtn">一鍵分享成就卡</span>
                 </button>
                 <button class="btn" id="themeToggleBtn" onclick="toggleTheme()">
                     <span id="themeToggleIcon">☀️</span> <span id="themeToggleText">切換淺色</span>
                 </button>
                 <button class="btn" onclick="exportData()">
-                    <span>📤</span> 匯出備份
+                    <span>📤</span> <span data-i18n="exportBtn">匯出備份</span>
                 </button>
                 <button class="btn" onclick="document.getElementById('importFile').click()">
-                    <span>📥</span> 導入備份
+                    <span>📥</span> <span data-i18n="importBtn">導入備份</span>
                 </button>
                 <input type="file" id="importFile" class="hidden-element" accept=".json" onchange="importData(event)">
                 <button class="btn" onclick="resetProgress()" style="color: var(--accent-red); border-color: rgba(255, 0, 60, 0.3);">
-                    <span>🔄</span> 重置
+                    <span>🔄</span> <span data-i18n="resetBtn">重置</span>
                 </button>
             </div>
         </header>
@@ -1681,7 +1685,7 @@
 
                 <!-- Radar Chart Section -->
                 <div class="radar-container">
-                    <div style="font-size: 15px; font-weight: 800; color: var(--text-secondary); width: 100%; border-bottom: 1px solid var(--border-color); padding-bottom: 6px; text-align: left;">
+                    <div style="font-size: 15px; font-weight: 800; color: var(--text-secondary); width: 100%; border-bottom: 1px solid var(--border-color); padding-bottom: 6px; text-align: left;" data-i18n="radarChartTitle">
                         📊 分類探索度 (雷達圖)
                     </div>
                     <canvas id="radarCanvas" width="320" height="320"></canvas>
@@ -1690,7 +1694,7 @@
                 <!-- Badge wall -->
                 <div class="badge-wall-container">
                     <div class="badge-title-header">
-                        <span>🏆 徽章展示牆</span>
+                        <span data-i18n="badgeWallTitle">🏆 徽章展示牆</span>
                         <span id="badgeUnlockCount">0 / 13</span>
                     </div>
                     <div class="badge-wall-grid" id="badgeWallGrid"></div>
@@ -1703,7 +1707,7 @@
                 <div class="card">
                     <div class="map-section-header">
                         <div class="map-section-title">
-                            <span>🗺️</span> 全球國家/地區足跡地圖 (<span id="totalPrefPercentage">0%</span>)
+                            <span>🗺️</span> <span data-i18n="mapTitle">全球國家/地區足跡地圖</span> (<span id="totalPrefPercentage">0%</span>)
                         </div>
                         <div style="font-size: 14.5px; font-weight: 800; color: var(--text-secondary);" id="totalPrefCount">
                             已踩點 0 / 55
@@ -1712,8 +1716,8 @@
 
                     <!-- Tabs control -->
                     <div class="map-tabs">
-                        <button class="map-tab-btn active" onclick="switchMapTab('grid')">🗺️ 網格地圖</button>
-                        <button class="map-tab-btn" onclick="switchMapTab('checklist')">📋 全球國家清單</button>
+                        <button class="map-tab-btn active" onclick="switchMapTab('grid')" data-i18n="tabGridMap">🗺️ 網格地圖</button>
+                        <button class="map-tab-btn" onclick="switchMapTab('checklist')" data-i18n="tabChecklist">📋 全球國家清單</button>
                     </div>
 
                     <!-- Tab 1: Grid Map Content -->
@@ -1723,7 +1727,7 @@
                             <div class="map-scroll-wrapper">
                                 <div class="prefectures-grid-map" id="earthCountryMap"></div>
                             </div>
-                            <div class="map-scroll-hint">💡 左右滑動以檢視完整世界網格地圖</div>
+                            <div class="map-scroll-hint" data-i18n="mapScrollHint">💡 左右滑動以檢視完整世界網格地圖</div>
 
                             <!-- Region Badge stats -->
                             <div class="regions-stats-panel" id="regionsStatsPanel"></div>
@@ -1734,7 +1738,7 @@
                     <div id="mapChecklistTabContent" class="map-tab-content hidden-element">
                         <div class="country-checklist-container">
                             <div class="country-search-box">
-                                <input type="text" id="countrySearchInput" class="search-input" placeholder="搜尋國家/地區名稱..." oninput="handleCountrySearch(this.value)">
+                                <input type="text" id="countrySearchInput" class="search-input" data-i18n="countrySearchPlaceholder" placeholder="搜尋國家/地區名稱..." oninput="handleCountrySearch(this.value)">
                                 <button class="clear-search-btn" id="clearCountrySearchBtn" onclick="clearCountrySearch()">✕</button>
                             </div>
                             <div class="continents-accordion" id="continentsAccordion"></div>
@@ -1746,14 +1750,14 @@
                 <div class="card">
                     <div class="map-section-header">
                         <div class="map-section-title">
-                            <span>🌟</span> 我的自訂成就 (<span id="customAchCount">0 / 0</span>)
+                            <span>🌟</span> <span data-i18n="customAchTitle">我的自訂成就</span> (<span id="customAchCount">0 / 0</span>)
                         </div>
                         <button class="btn" id="addCustomAchBtn" onclick="openCustomAchModal()">
-                            <span>➕</span> 新增自訂成就
+                            <span>➕</span> <span data-i18n="addCustomAchBtn">新增自訂成就</span>
                         </button>
                     </div>
                     <div class="achievements-grid" id="customAchGrid"></div>
-                    <div class="custom-ach-empty" id="customAchEmptyHint">
+                    <div class="custom-ach-empty" id="customAchEmptyHint" data-i18n="customAchEmptyHint">
                         還沒有自訂成就。把官方清單沒有、但對你別具意義的旅行時刻記下來吧！（最多 10 個，會計入總成就數與等級）
                     </div>
                 </div>
@@ -1762,37 +1766,37 @@
                 <div class="filters-panel">
                     <div class="filter-row-top">
                         <div class="search-box">
-                            <input type="text" id="searchBar" class="search-input" placeholder="搜尋成就名稱或說明描述..." oninput="handleSearch(this.value)">
+                            <input type="text" id="searchBar" class="search-input" data-i18n="searchPlaceholder" placeholder="搜尋成就名稱或說明描述..." oninput="handleSearch(this.value)">
                             <button class="clear-search-btn" id="clearSearchBtn" onclick="clearSearch()">✕</button>
                         </div>
                         <div class="filter-groups">
                             <select id="diffFilter" class="select-filter" onchange="filterAchievements()">
-                                <option value="all">所有難度</option>
-                                <option value="1">★☆☆☆☆ (新手)</option>
-                                <option value="2">★★☆☆☆ (旅人)</option>
-                                <option value="3">★★★☆☆ (探索者)</option>
-                                <option value="4">★★★★☆ (世界旅人)</option>
-                                <option value="5">★★★★★ (修羅)</option>
-                                <option value="6">★★★★★★ (隱藏)</option>
+                                <option value="all" data-i18n="filterAllDiff">所有難度</option>
+                                <option value="1" data-i18n="filterDiff1">★☆☆☆☆ (新手)</option>
+                                <option value="2" data-i18n="filterDiff2">★★☆☆☆ (旅人)</option>
+                                <option value="3" data-i18n="filterDiff3">★★★☆☆ (探索者)</option>
+                                <option value="4" data-i18n="filterDiff4">★★★★☆ (世界旅人)</option>
+                                <option value="5" data-i18n="filterDiff5">★★★★★ (修羅)</option>
+                                <option value="6" data-i18n="filterDiff6">★★★★★★ (隱藏)</option>
                             </select>
                             <select id="rarityFilter" class="select-filter" onchange="filterAchievements()">
-                                <option value="all">所有稀有度</option>
+                                <option value="all" data-i18n="filterAllRarity">所有稀有度</option>
                                 <option value="Common">Common</option>
                                 <option value="Rare">Rare</option>
                                 <option value="Epic">Epic</option>
                                 <option value="Legendary">Legendary</option>
                             </select>
                             <select id="statusFilter" class="select-filter" onchange="filterAchievements()">
-                                <option value="all">所有狀態</option>
-                                <option value="completed">已解鎖</option>
-                                <option value="uncompleted">未解鎖</option>
+                                <option value="all" data-i18n="filterAllStatus">所有狀態</option>
+                                <option value="completed" data-i18n="filterStatusCompleted">已解鎖</option>
+                                <option value="uncompleted" data-i18n="filterStatusUncompleted">未解鎖</option>
                             </select>
                         </div>
                     </div>
                     
                     <div class="stats-quick-filters">
-                        <span>快速篩選徽章：</span>
-                        <div class="quick-filter-tag active" id="badgeTag-all" onclick="filterByBadge('all')">全部</div>
+                        <span data-i18n="quickFilterLabel">快速篩選徽章：</span>
+                        <div class="quick-filter-tag active" id="badgeTag-all" onclick="filterByBadge('all')" data-i18n="quickFilterAll">全部</div>
                         <div class="quick-filter-tag" id="badgeTag-backpacker" onclick="filterByBadge('backpacker')">🎒 背包客</div>
                         <div class="quick-filter-tag" id="badgeTag-foodie" onclick="filterByBadge('foodie')">🍜 世界饕客</div>
                         <div class="quick-filter-tag" id="badgeTag-nature_lover" onclick="filterByBadge('nature_lover')">🏕️ 荒野獵人</div>
@@ -1816,14 +1820,16 @@
         <footer>
             <div class="footer-social-links">
                 <a href="https://yblog.org/" target="_blank" rel="noreferrer noopener">Yblog.org 優格網</a>
-                <a href="https://www.threads.com/@ivanusto" target="_blank" rel="noreferrer noopener">ivanusto @ threads</a>
+                <a href="https://www.threads.net/@ivanusto" target="_blank" rel="noreferrer noopener">ivanusto @ threads</a>
                 <a href="https://x.com/ivanusto" target="_blank" rel="noreferrer noopener">ivanusto @ twitter</a>
                 <a href="https://www.plurk.com/ivanusto" target="_blank" rel="noreferrer noopener">ivanusto @ plurk</a>
                 <a href="https://www.instagram.com/ivanusto/" target="_blank" rel="noreferrer noopener">ivanusto @ instagram</a>
                 <a href="https://www.facebook.com/ivanusto" target="_blank" rel="noreferrer noopener">ivanusto @ facebook</a>
-                <a href="https://ivanusto.github.io/japan-travel-achievement-list/" target="_blank" rel="noreferrer noopener">🗾 日本旅行成就系統</a>
+                <a href="https://ivanusto.github.io/taiwan-travel-achievement-list/" target="_blank" rel="noreferrer noopener">🇹🇼 <span data-i18n="taiwanTravelLink">台灣旅行成就系統</span></a>
+                <a href="https://ivanusto.github.io/japan-travel-achievement-list/" target="_blank" rel="noreferrer noopener">🗾 <span data-i18n="japanTravelLink">日本旅行成就系統</span></a>
+                <a href="https://ivanusto.github.io/travel-achievement-list/" target="_blank" rel="noreferrer noopener">🌍 <span data-i18n="earthTravelLink">地球旅行成就系統</span></a>
             </div>
-            <div class="footer-credit">
+            <div class="footer-credit" data-i18n="footerCredit">
                 © 2026 地球旅行成就系統. All rights reserved. Created with 💖 for World Travelers.
             </div>
         </footer>
@@ -1832,22 +1838,22 @@
     <!-- Avatar Picker Dialog backdrop -->
     <div class="avatar-picker-backdrop" id="avatarPickerModal" onclick="closeAvatarPicker()">
         <div class="avatar-picker-modal" onclick="event.stopPropagation()">
-            <h3 style="margin-top:0;">選擇頭像 Emojis</h3>
+            <h3 style="margin-top:0;" data-i18n="avatarModalTitle">選擇頭像 Emojis</h3>
             <div class="avatar-picker-grid" id="avatarPickerGrid"></div>
-            <button class="btn btn-accent" style="width:100%;" onclick="closeAvatarPicker()">關閉</button>
+            <button class="btn btn-accent" style="width:100%;" onclick="closeAvatarPicker()" data-i18n="closeBtn">關閉</button>
         </div>
     </div>
 
     <!-- Share PNG Card Modal -->
     <div id="shareModalBackdrop" onclick="closeShareModal()">
         <div class="share-modal-content" onclick="event.stopPropagation()">
-            <h3 style="margin-top:0; margin-bottom:10px;">📸 生成個人旅行成就卡</h3>
-            <p style="margin:0 0 10px 0; font-size:13px; color:var(--text-secondary); text-align:center;">
+            <h3 style="margin-top:0; margin-bottom:10px;" data-i18n="shareModalTitle">📸 生成個人旅行成就卡</h3>
+            <p style="margin:0 0 10px 0; font-size:13px; color:var(--text-secondary); text-align:center;" data-i18n="shareModalDesc">
                 你可以將此圖卡分享到社交媒體（如 Threads, IG 等），向大家炫耀你的全球旅遊歷練！
             </p>
             <canvas id="sharingPreviewCanvas" width="800" height="1200"></canvas>
             <div class="share-social-row">
-                <span class="share-social-label">分享到：</span>
+                <span class="share-social-label" data-i18n="shareToLabel">分享到：</span>
                 <button class="social-share-btn" onclick="shareToSocial('instagram')" title="分享到 Instagram" aria-label="分享到 Instagram">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </button>
@@ -1865,13 +1871,674 @@
                 </button>
             </div>
             <div class="share-actions">
-                <button class="btn btn-accent" onclick="downloadShareCard()">下載 PNG 圖片</button>
-                <button class="btn" onclick="closeShareModal()">取消</button>
+                <button class="btn btn-accent" onclick="downloadShareCard()" data-i18n="downloadPngBtn">下載 PNG 圖片</button>
+                <button class="btn" onclick="closeShareModal()" data-i18n="cancelBtn">取消</button>
             </div>
         </div>
     </div>
 
     <script>
+// --- 0. Localization (i18n) ---
+        const TRANSLATIONS = {
+            "zh-TW": {
+                "title": "🌍 地球旅行成就系統",
+                "subtitle": "探索全球足跡 • 解鎖冒險徽章 • 完成你的世界旅行手帳",
+                "taiwanTravelLink": "台灣旅行成就系統",
+                "japanTravelLink": "日本旅行成就系統",
+                "earthTravelLink": "地球旅行成就系統",
+                "shareCardBtn": "一鍵分享成就卡",
+                "themeToggleTextLight": "切換淺色",
+                "themeToggleTextDark": "切換深色",
+                "exportBtn": "匯出備份",
+                "importBtn": "導入備份",
+                "resetBtn": "重置",
+                "radarChartTitle": "📊 分類探索度 (雷達圖)",
+                "badgeWallTitle": "🏆 徽章展示牆",
+                "mapTitle": "全球國家/地區足跡地圖",
+                "tabGridMap": "🗺️ 網格地圖",
+                "tabChecklist": "📋 全球國家清單",
+                "mapScrollHint": "💡 左右滑動以檢視完整世界網格地圖",
+                "countrySearchPlaceholder": "搜尋國家/地區名稱...",
+                "gridIndicatorTitle": "此國家在網格地圖上",
+                "customAchTitle": "我的自訂成就",
+                "addCustomAchBtn": "新增自訂成就",
+                "customAchEmptyHint": "還沒有自訂成就。把官方清單沒有、但對你別具意義的旅行時刻記下來吧！（最多 10 個，會計入總成就數與等級）",
+                "searchPlaceholder": "搜尋成就名稱或說明描述...",
+                "filterAllDiff": "所有難度",
+                "filterDiff1": "★☆☆☆☆ (新手)",
+                "filterDiff2": "★★☆☆☆ (旅人)",
+                "filterDiff3": "★★★☆☆ (探索者)",
+                "filterDiff4": "★★★★☆ (世界旅人)",
+                "filterDiff5": "★★★★★ (修羅)",
+                "filterDiff6": "★★★★★★ (隱藏)",
+                "filterAllRarity": "所有稀有度",
+                "filterAllStatus": "所有狀態",
+                "filterStatusCompleted": "已解鎖",
+                "filterStatusUncompleted": "未解鎖",
+                "quickFilterLabel": "快速篩選徽章：",
+                "quickFilterAll": "全部",
+                "avatarModalTitle": "選擇頭像 Emojis",
+                "closeBtn": "關閉",
+                "shareModalTitle": "📸 生成個人旅行成就卡",
+                "shareModalDesc": "你可以將此圖卡分享到社交媒體（如 Threads, IG 等），向大家炫耀你的全球旅遊歷練！",
+                "shareToLabel": "分享到：",
+                "downloadPngBtn": "下載 PNG 圖片",
+                "cancelBtn": "取消",
+                "customAchModalTitleAdd": "🌟 新增自訂成就",
+                "customAchModalTitleEdit": "✏️ 編輯自訂成就",
+                "customAchNameLabel": "成就名稱（必填，30 字內）",
+                "customAchNamePlaceholder": "例如：在扭蛋店一次扭中隱藏款 🎰",
+                "customAchDescLabel": "成就描述（選填，60 字內）",
+                "customAchDescPlaceholder": "記下這個成就的達成條件或背後的故事...",
+                "customAchDiffLabel": "難度星級",
+                "customAchDiff1": "★☆☆☆☆ (輕鬆達成)",
+                "customAchDiff2": "★★☆☆☆ (小有挑戰)",
+                "customAchDiff3": "★★★☆☆ (需要努力)",
+                "customAchDiff4": "★★★★☆ (相當困難)",
+                "customAchDiff5": "★★★★★ (畢生難忘)",
+                "saveBtn": "儲存",
+                "registerTitle": "🎒 探險家登錄",
+                "registerDesc": "歡迎來到地球旅行成就系統！請為您的手帳進行首次角色登錄：",
+                "registerStep1": "1. 選擇起手頭像",
+                "registerStep2": "2. 輸入您的暱稱",
+                "registerPlaceholder": "例如：環球旅人小明...",
+                "registerBtn": "🎮 登錄完成，開始冒險！",
+                "footerJapanLink": "🗾 日本旅行成就系統",
+                "footerCredit": "© 2026 地球旅行成就系統. All rights reserved. Created with 💖 for World Travelers.",
+                "resetConfirm": "⚠️ 確定要重置所有旅遊成就與全球國家/地區足跡嗎？此動作無法復原！",
+                "resetTitle": "進度重置",
+                "resetDesc": "已清除所有勾選記錄",
+                "importSuccessTitle": "導入成功",
+                "importSuccessDesc": "你的旅遊進度已完全恢復",
+                "importErrorAlert": "檔案格式不正確，請匯入本系統產出的 JSON 備份檔。",
+                "importReadErrorAlert": "讀取檔案出錯，請確認檔案格式是否正確。",
+                "playerNameInputTitle": "點擊修改暱稱",
+                "xpDisplaySuffix": "成就",
+                "prefDisplayPrefix": "已踩點",
+                "prefUnlockTitle": "拜訪打卡",
+                "prefUnlockDesc": "已新增到訪足跡：{name}",
+                "achUnlockTitle": "成就解除！",
+                "multiUnlockTitle": "🌟 複數成就解除！",
+                "multiUnlockDesc": "您一口氣解鎖了 {count} 個旅行項目！",
+                "customAchAddTitle": "已建立自訂成就",
+                "customAchNameRequired": "請輸入成就名稱！",
+                "customAchDeleteConfirm": "確定要刪除自訂成就「{name}」嗎？",
+                "customAchLimitTitle": "已達上限",
+                "customAchLimitDesc": "自訂成就最多 {limit} 個",
+                "badgeUnlockTitle": "解鎖榮譽徽章！",
+                "badgeUnlockDesc": "{emoji} [{name}] 已加入收藏牆",
+                "regSuccessTitle": "冒險開始！",
+                "regSuccessDesc": "探險家 {name}，祝您地球旅行愉快！",
+                "shareCardNotifyTitle": "圖卡下載成功",
+                "shareCardNotifyDesc": "歡迎分享到 Threads 或 Instagram！",
+                "igShareNotifyTitle": "圖卡已下載",
+                "igShareNotifyDesc": "Instagram 不支援網頁分享，請開啟 IG App 上傳圖卡",
+                "defaultPlayerName": "環球探險家",
+                "editBtnTitle": "編輯",
+                "deleteBtnTitle": "刪除",
+                "customAchLabel": "自訂",
+                "customAchDefaultDesc": "由你親自訂立的專屬成就。",
+                "hiddenOverlayText": "🔒 STEAM 隱藏成就",
+                "hiddenAchName": "??? 隱藏成就",
+                "hiddenAchDesc": "解鎖或滑鼠懸停以揭曉內容。",
+                "levelTitle0": "🌱 旅行初心者",
+                "levelTitle1": "🎒 世界旅人",
+                "levelTitle2": "✈ 冒險探索家",
+                "levelTitle3": "🌍 傳奇探險家",
+                "levelTitle4": "👑 環球旅行家",
+                "levelTitle5": "🌌 宇宙級旅行神",
+                "levelLabel": "等級",
+                "shareCardTitle": "地球旅行成就記錄卡",
+                "totalUnlockRateLabel": "總成就解鎖率",
+                "mapTitleLabel": "全球國家/地區足跡",
+                "radarChartTitleLabel": "📊 分類探索度",
+                "badgeWallTitleLabel": "🏆 解鎖榮譽徽章牆",
+                "showcaseTitleLabel": "🌟 最引以為傲的冒險成就",
+                "catLabel": "分類：",
+                "showcaseEmptyLabel": "尚無解鎖此欄位之高級成就，趕快去旅行吧！",
+                "shareCardFooter": "本成就卡由「地球旅行成就系統」產出",
+                "shareText": "我在「地球旅行成就系統」解鎖了 {completed}/{total} 項成就、踩點 {visited}/{countries} 個國家/地區！快來挑戰你的全球旅行足跡 🌍"
+            },
+            "en": {
+                "title": "🌍 Earth Travel Achievements",
+                "subtitle": "Track Global Footprints • Unlock Badges • Complete Your World Travel Notebook",
+                "taiwanTravelLink": "Taiwan Travel Achievements",
+                "japanTravelLink": "Japan Travel Achievements",
+                "earthTravelLink": "Earth Travel Achievements",
+                "shareCardBtn": "Share Card",
+                "themeToggleTextLight": "Light Theme",
+                "themeToggleTextDark": "Dark Theme",
+                "exportBtn": "Export Backup",
+                "importBtn": "Import Backup",
+                "resetBtn": "Reset",
+                "radarChartTitle": "📊 Exploration Radar",
+                "badgeWallTitle": "🏆 Badge Wall",
+                "mapTitle": "Global Country Footprint Map",
+                "tabGridMap": "🗺️ Grid Map",
+                "tabChecklist": "📋 Country Checklist",
+                "mapScrollHint": "💡 Swipe horizontally to view the full world grid map",
+                "countrySearchPlaceholder": "Search country/region name...",
+                "gridIndicatorTitle": "This country is on the grid map",
+                "customAchTitle": "My Custom Achievements",
+                "addCustomAchBtn": "Add Custom Achievement",
+                "customAchEmptyHint": "No custom achievements yet. Record the travel moments that matter to you but aren't on the official list! (Up to 10; they count toward totals and level)",
+                "searchPlaceholder": "Search achievement names or descriptions...",
+                "filterAllDiff": "All Difficulties",
+                "filterDiff1": "★☆☆☆☆ (Novice)",
+                "filterDiff2": "★★☆☆☆ (Traveler)",
+                "filterDiff3": "★★★☆☆ (Explorer)",
+                "filterDiff4": "★★★★☆ (Globetrotter)",
+                "filterDiff5": "★★★★★ (Extreme)",
+                "filterDiff6": "★★★★★★ (Hidden)",
+                "filterAllRarity": "All Rarities",
+                "filterAllStatus": "All Statuses",
+                "filterStatusCompleted": "Unlocked",
+                "filterStatusUncompleted": "Locked",
+                "quickFilterLabel": "Quick badge filter:",
+                "quickFilterAll": "All",
+                "avatarModalTitle": "Choose Avatar Emoji",
+                "closeBtn": "Close",
+                "shareModalTitle": "📸 Generate Your Travel Achievement Card",
+                "shareModalDesc": "Share this card on social media (Threads, IG, etc.) and show off your global travel experience!",
+                "shareToLabel": "Share to:",
+                "downloadPngBtn": "Download PNG",
+                "cancelBtn": "Cancel",
+                "customAchModalTitleAdd": "🌟 Add Custom Achievement",
+                "customAchModalTitleEdit": "✏️ Edit Custom Achievement",
+                "customAchNameLabel": "Achievement name (required, max 30 chars)",
+                "customAchNamePlaceholder": "e.g. Won the secret gacha prize on the first try 🎰",
+                "customAchDescLabel": "Description (optional, max 60 chars)",
+                "customAchDescPlaceholder": "Note the unlock conditions or the story behind it...",
+                "customAchDiffLabel": "Difficulty",
+                "customAchDiff1": "★☆☆☆☆ (Easy)",
+                "customAchDiff2": "★★☆☆☆ (Mild Challenge)",
+                "customAchDiff3": "★★★☆☆ (Takes Effort)",
+                "customAchDiff4": "★★★★☆ (Quite Hard)",
+                "customAchDiff5": "★★★★★ (Once in a Lifetime)",
+                "saveBtn": "Save",
+                "registerTitle": "🎒 Explorer Registration",
+                "registerDesc": "Welcome to Earth Travel Achievements! Register your character to start your travel notebook:",
+                "registerStep1": "1. Pick a starting avatar",
+                "registerStep2": "2. Enter your nickname",
+                "registerPlaceholder": "e.g. Globetrotter Alex...",
+                "registerBtn": "🎮 Register & Start the Adventure!",
+                "footerJapanLink": "🗾 Japan Travel Achievements",
+                "footerCredit": "© 2026 Earth Travel Achievements. All rights reserved. Created with 💖 for World Travelers.",
+                "resetConfirm": "⚠️ Reset all achievements and country footprints? This cannot be undone!",
+                "resetTitle": "Progress Reset",
+                "resetDesc": "All records have been cleared",
+                "importSuccessTitle": "Import Successful",
+                "importSuccessDesc": "Your travel progress has been fully restored",
+                "importErrorAlert": "Invalid file format. Please import a JSON backup exported by this system.",
+                "importReadErrorAlert": "Failed to read the file. Please check the file format.",
+                "playerNameInputTitle": "Click to edit nickname",
+                "xpDisplaySuffix": "achievements",
+                "prefDisplayPrefix": "Visited",
+                "prefUnlockTitle": "Check-in",
+                "prefUnlockDesc": "Footprint added: {name}",
+                "achUnlockTitle": "Achievement Unlocked!",
+                "multiUnlockTitle": "🌟 Multiple Achievements Unlocked!",
+                "multiUnlockDesc": "You unlocked {count} travel achievements at once!",
+                "customAchAddTitle": "Custom Achievement Created",
+                "customAchNameRequired": "Please enter an achievement name!",
+                "customAchDeleteConfirm": "Delete custom achievement \"{name}\"?",
+                "customAchLimitTitle": "Limit Reached",
+                "customAchLimitDesc": "You can create up to {limit} custom achievements",
+                "badgeUnlockTitle": "Badge Unlocked!",
+                "badgeUnlockDesc": "{emoji} [{name}] added to your badge wall",
+                "regSuccessTitle": "The Adventure Begins!",
+                "regSuccessDesc": "Explorer {name}, enjoy your journey around the Earth!",
+                "shareCardNotifyTitle": "Card Downloaded",
+                "shareCardNotifyDesc": "Share it on Threads or Instagram!",
+                "igShareNotifyTitle": "Card Downloaded",
+                "igShareNotifyDesc": "Instagram has no web share; open the IG app to upload the card",
+                "defaultPlayerName": "Globe Explorer",
+                "editBtnTitle": "Edit",
+                "deleteBtnTitle": "Delete",
+                "customAchLabel": "Custom",
+                "customAchDefaultDesc": "A personal achievement defined by you.",
+                "hiddenOverlayText": "🔒 STEAM Hidden Achievement",
+                "hiddenAchName": "??? Hidden Achievement",
+                "hiddenAchDesc": "Unlock it or hover to reveal.",
+                "levelTitle0": "🌱 Travel Novice",
+                "levelTitle1": "🎒 World Wanderer",
+                "levelTitle2": "✈ Adventure Explorer",
+                "levelTitle3": "🌍 Legendary Explorer",
+                "levelTitle4": "👑 Globe Trotter",
+                "levelTitle5": "🌌 Cosmic Travel God",
+                "levelLabel": "Level",
+                "shareCardTitle": "Earth Travel Achievement Card",
+                "totalUnlockRateLabel": "Achievements Unlocked",
+                "mapTitleLabel": "Countries Visited",
+                "radarChartTitleLabel": "📊 Exploration Radar",
+                "badgeWallTitleLabel": "🏆 Unlocked Badge Wall",
+                "showcaseTitleLabel": "🌟 Proudest Adventures",
+                "catLabel": "Category: ",
+                "showcaseEmptyLabel": "No high-tier achievements unlocked yet — go travel!",
+                "shareCardFooter": "Generated by Earth Travel Achievements",
+                "shareText": "I unlocked {completed}/{total} achievements and visited {visited}/{countries} countries/regions on Earth Travel Achievements! Come challenge your global footprint 🌍",
+                "cat-自然": "Nature",
+                "cat-交通": "Transport",
+                "cat-美食": "Food",
+                "cat-文化": "Culture",
+                "cat-購物": "Shopping",
+                "cat-住宿": "Lodging",
+                "cat-離島": "Islands",
+                "cat-極限挑戰": "Challenges",
+                "cat-攝影": "Photo",
+                "cat-祭典": "Festivals",
+                "reg-亞洲": "Asia",
+                "reg-歐洲": "Europe",
+                "reg-北美洲": "North America",
+                "reg-南美洲": "South America",
+                "reg-非洲": "Africa",
+                "reg-大洋洲": "Oceania",
+                "reg-南極洲": "Antarctica",
+                "badge-name-backpacker": "Backpacker",
+                "badge-desc-backpacker": "Unlock 10 transport/adventure/shopping achievements",
+                "badge-name-foodie": "World Foodie",
+                "badge-desc-foodie": "Unlock 10 food/cuisine achievements",
+                "badge-name-nature_lover": "Wilderness Hunter",
+                "badge-desc-nature_lover": "Unlock 8 natural wonder achievements",
+                "badge-name-history_buff": "Civilization Explorer",
+                "badge-desc-history_buff": "Unlock 8 culture/heritage achievements",
+                "badge-name-adventurer": "Extreme Challenger",
+                "badge-desc-adventurer": "Unlock 6 extreme/sports achievements",
+                "badge-name-rail_explorer": "Rail & Voyage Fan",
+                "badge-desc-rail_explorer": "Unlock 6 rail/transport/ferry achievements",
+                "badge-name-island_hopper": "Island Hopper",
+                "badge-desc-island_hopper": "Unlock 5 island-hopping achievements",
+                "badge-name-festival_goer": "Festival Reveler",
+                "badge-desc-festival_goer": "Unlock 5 festival & event achievements",
+                "badge-name-museum_curator": "Museum Pilgrim",
+                "badge-desc-museum_curator": "Unlock 5 museum/art achievements",
+                "badge-name-luxury_traveler": "Luxury Traveler",
+                "badge-desc-luxury_traveler": "Unlock 5 unique/luxury lodging achievements",
+                "badge-name-world_conqueror": "World Traveler",
+                "badge-desc-world_conqueror": "Visit 20 countries/regions",
+                "badge-name-earth_guardian": "Globe Trotter",
+                "badge-desc-earth_guardian": "Visit 40 countries/regions",
+                "badge-name-cosmic_voyager": "Ultimate Explorer",
+                "badge-desc-cosmic_voyager": "Visit 60 countries/regions",
+                "country-short-canada": "CA", "country-short-usa": "US", "country-short-mexico": "MX", "country-short-cuba": "CU",
+                "country-short-colombia": "CO", "country-short-venezuela": "VE", "country-short-peru": "PE", "country-short-brazil": "BR",
+                "country-short-bolivia": "BO", "country-short-chile": "CL", "country-short-argentina": "AR",
+                "country-short-iceland": "IS", "country-short-norway": "NO", "country-short-sweden": "SE", "country-short-finland": "FI",
+                "country-short-uk": "UK", "country-short-netherlands": "NL", "country-short-germany": "DE", "country-short-poland": "PL",
+                "country-short-france": "FR", "country-short-switzerland": "CH", "country-short-austria": "AT", "country-short-czech": "CZ",
+                "country-short-portugal": "PT", "country-short-spain": "ES", "country-short-italy": "IT", "country-short-greece": "GR",
+                "country-short-turkey": "TR", "country-short-morocco": "MA", "country-short-egypt": "EG", "country-short-senegal": "SN",
+                "country-short-kenya": "KE", "country-short-tanzania": "TZ", "country-short-mauritius": "MU", "country-short-southafrica": "ZA",
+                "country-short-madagascar": "MG", "country-short-uae": "AE", "country-short-maldives": "MV", "country-short-india": "IN",
+                "country-short-russia": "Russia", "country-short-mongolia": "MN", "country-short-china": "CN", "country-short-korea": "KR",
+                "country-short-japan": "JP", "country-short-hongkong": "HK", "country-short-taiwan": "TW", "country-short-thailand": "TH",
+                "country-short-vietnam": "VN", "country-short-philippines": "PH", "country-short-malaysia": "MY", "country-short-singapore": "SG",
+                "country-short-indonesia": "ID", "country-short-australia": "Australia", "country-short-newzealand": "NZ",
+                "country-short-antarctica": "Antarctica",
+                "country-name-taiwan": "Taiwan", "country-name-japan": "Japan", "country-name-korea": "South Korea", "country-name-china": "China",
+                "country-name-hongkong": "Hong Kong", "country-name-macau": "Macau", "country-name-thailand": "Thailand", "country-name-vietnam": "Vietnam",
+                "country-name-singapore": "Singapore", "country-name-malaysia": "Malaysia", "country-name-indonesia": "Indonesia", "country-name-philippines": "Philippines",
+                "country-name-cambodia": "Cambodia", "country-name-myanmar": "Myanmar", "country-name-laos": "Laos", "country-name-brunei": "Brunei",
+                "country-name-india": "India", "country-name-maldives": "Maldives", "country-name-uae": "UAE", "country-name-mongolia": "Mongolia",
+                "country-name-nepal": "Nepal", "country-name-sri_lanka": "Sri Lanka", "country-name-east_timor": "Timor-Leste", "country-name-pakistan": "Pakistan",
+                "country-name-bangladesh": "Bangladesh", "country-name-bhutan": "Bhutan", "country-name-kazakhstan": "Kazakhstan", "country-name-uzbekistan": "Uzbekistan",
+                "country-name-kyrgyzstan": "Kyrgyzstan", "country-name-tajikistan": "Tajikistan", "country-name-turkmenistan": "Turkmenistan", "country-name-saudi_arabia": "Saudi Arabia",
+                "country-name-qatar": "Qatar", "country-name-jordan": "Jordan", "country-name-israel": "Israel", "country-name-iran": "Iran",
+                "country-name-iraq": "Iraq", "country-name-oman": "Oman", "country-name-kuwait": "Kuwait", "country-name-bahrain": "Bahrain",
+                "country-name-lebanon": "Lebanon", "country-name-syria": "Syria", "country-name-palestine": "Palestine", "country-name-cyprus": "Cyprus",
+                "country-name-georgia": "Georgia", "country-name-armenia": "Armenia", "country-name-azerbaijan": "Azerbaijan", "country-name-russia": "Russia",
+                "country-name-iceland": "Iceland", "country-name-norway": "Norway", "country-name-sweden": "Sweden", "country-name-finland": "Finland",
+                "country-name-uk": "United Kingdom", "country-name-netherlands": "Netherlands", "country-name-germany": "Germany", "country-name-poland": "Poland",
+                "country-name-france": "France", "country-name-switzerland": "Switzerland", "country-name-austria": "Austria", "country-name-czech": "Czechia",
+                "country-name-portugal": "Portugal", "country-name-spain": "Spain", "country-name-italy": "Italy", "country-name-greece": "Greece",
+                "country-name-turkey": "Turkey", "country-name-belgium": "Belgium", "country-name-luxembourg": "Luxembourg", "country-name-denmark": "Denmark",
+                "country-name-ireland": "Ireland", "country-name-ukraine": "Ukraine", "country-name-belarus": "Belarus", "country-name-moldova": "Moldova",
+                "country-name-romania": "Romania", "country-name-bulgaria": "Bulgaria", "country-name-vatican": "Vatican City", "country-name-monaco": "Monaco",
+                "country-name-croatia": "Croatia", "country-name-slovakia": "Slovakia", "country-name-hungary": "Hungary", "country-name-estonia": "Estonia",
+                "country-name-latvia": "Latvia", "country-name-lithuania": "Lithuania", "country-name-malta": "Malta", "country-name-andorra": "Andorra",
+                "country-name-liechtenstein": "Liechtenstein", "country-name-san_marino": "San Marino", "country-name-kosovo": "Kosovo", "country-name-canada": "Canada",
+                "country-name-usa": "United States", "country-name-mexico": "Mexico", "country-name-cuba": "Cuba", "country-name-bahamas": "Bahamas",
+                "country-name-jamaica": "Jamaica", "country-name-dominican_republic": "Dominican Republic", "country-name-haiti": "Haiti", "country-name-costa_rica": "Costa Rica",
+                "country-name-panama": "Panama", "country-name-guatemala": "Guatemala", "country-name-belize": "Belize", "country-name-el_salvador": "El Salvador",
+                "country-name-honduras": "Honduras", "country-name-nicaragua": "Nicaragua", "country-name-colombia": "Colombia", "country-name-venezuela": "Venezuela",
+                "country-name-peru": "Peru", "country-name-brazil": "Brazil", "country-name-bolivia": "Bolivia", "country-name-chile": "Chile",
+                "country-name-argentina": "Argentina", "country-name-ecuador": "Ecuador", "country-name-uruguay": "Uruguay", "country-name-paraguay": "Paraguay",
+                "country-name-guyana": "Guyana", "country-name-suriname": "Suriname", "country-name-morocco": "Morocco", "country-name-egypt": "Egypt",
+                "country-name-senegal": "Senegal", "country-name-kenya": "Kenya", "country-name-tanzania": "Tanzania", "country-name-mauritius": "Mauritius",
+                "country-name-southafrica": "South Africa", "country-name-madagascar": "Madagascar", "country-name-tunisia": "Tunisia", "country-name-algeria": "Algeria",
+                "country-name-libya": "Libya", "country-name-ethiopia": "Ethiopia", "country-name-nigeria": "Nigeria", "country-name-ghana": "Ghana",
+                "country-name-uganda": "Uganda", "country-name-rwanda": "Rwanda", "country-name-zimbabwe": "Zimbabwe", "country-name-zambia": "Zambia",
+                "country-name-namibia": "Namibia", "country-name-botswana": "Botswana", "country-name-mozambique": "Mozambique", "country-name-angola": "Angola",
+                "country-name-seychelles": "Seychelles", "country-name-australia": "Australia", "country-name-newzealand": "New Zealand", "country-name-fiji": "Fiji",
+                "country-name-palau": "Palau", "country-name-guam": "Guam", "country-name-saipan": "Saipan", "country-name-samoa": "Samoa",
+                "country-name-tonga": "Tonga", "country-name-vanuatu": "Vanuatu", "country-name-png": "Papua New Guinea", "country-name-solomon_islands": "Solomon Islands",
+                "country-name-marshall_islands": "Marshall Islands", "country-name-micronesia": "Micronesia", "country-name-antarctica": "Antarctica",
+                "ach-name-1": "Witness the Northern Lights 🌌", "ach-desc-1": "See the dreamlike green auroras dance across the night sky in Iceland, Norway, Canada, or elsewhere in the auroral zone.",
+                "ach-name-2": "Grand Canyon Vista 🏜️", "ach-desc-2": "Visit Grand Canyon National Park and gaze over the vast red cliffs carved by the Colorado River over millions of years.",
+                "ach-name-3": "Great Barrier Reef Dive 🐠", "ach-desc-3": "Snorkel or dive Australia's Great Barrier Reef, the world's largest and most beautiful coral reef system.",
+                "ach-name-4": "Jungfrau Railway Summit 🏔️", "ach-desc-4": "Ride the 'Top of Europe' Jungfrau Railway into the Alps and overlook endless glaciers.",
+                "ach-name-5": "Amazon Rainforest Expedition 🌳", "ach-desc-5": "Venture deep into the South American Amazon in search of pink river dolphins, piranhas, and rare birds.",
+                "ach-name-6": "Sahara Desert Trek 🐫", "ach-desc-6": "Ride a camel across the golden dunes of the Sahara and spend a night in a desert camp under the stars.",
+                "ach-name-7": "Uyuni Salt Flat Mirror 🇧🇴", "ach-desc-7": "Visit the Uyuni Salt Flats in the rainy season to see the flawless 'mirror of the sky' where heaven meets earth.",
+                "ach-name-8": "Niagara Falls Soak 🌊", "ach-desc-8": "Ride the Maid of the Mist and feel the thundering spray of Niagara Falls up close.",
+                "ach-name-9": "Pamukkale Hot Springs 🏔️", "ach-desc-9": "Walk the white travertine terraces of Turkey's Pamukkale and soak in the pale-blue thermal pools.",
+                "ach-name-10": "Dead Sea Float 🌊", "ach-desc-10": "Float effortlessly on the Dead Sea in Jordan or Israel thanks to its extreme salinity.",
+                "ach-name-11": "Milford Sound Cruise 🛳️", "ach-desc-11": "Cruise New Zealand's Milford Sound beneath towering cliffs and countless waterfalls.",
+                "ach-name-12": "Banff National Park 🌲", "ach-desc-12": "Stroll along Lake Louise in the Rockies and admire its emerald water and distant glaciers.",
+                "ach-name-13": "Lake Baikal Blue Ice ❄️", "ach-desc-13": "Visit Siberia's Lake Baikal in winter and walk on its crystal-clear, mysteriously blue cracked ice.",
+                "ach-name-14": "Giant's Causeway 🪨", "ach-desc-14": "Explore Northern Ireland's mythical coastline of forty thousand interlocking basalt columns.",
+                "ach-name-15": "Summit Kilimanjaro 🏔️", "ach-desc-15": "Climb to the 5,895 m summit of Kilimanjaro, Africa's highest peak and an equatorial snow mountain.",
+                "ach-name-16": "Ha Long Bay Cruise 🛳️", "ach-desc-16": "Sail a junk boat among thousands of limestone karsts scattered across Vietnam's Ha Long Bay.",
+                "ach-name-17": "Grand Prismatic Spring 🌋", "ach-desc-17": "See Yellowstone's steaming, rainbow-colored Grand Prismatic Spring with your own eyes.",
+                "ach-name-18": "Blue Lagoon Soak 🧖", "ach-desc-18": "Relax in Iceland's famous geothermal Blue Lagoon and apply its mineral-rich white silica mud.",
+                "ach-name-19": "Great Migration Safari 🦁", "ach-desc-19": "Witness millions of wildebeest and zebras cross crocodile rivers in the Maasai Mara or Serengeti.",
+                "ach-name-20": "Galápagos Wildlife Encounter 🐢", "ach-desc-20": "Visit Ecuador's Galápagos Islands to see giant tortoises, marine iguanas, and blue-footed boobies up close.",
+                "ach-name-21": "Summit Mount Fuji 🗻", "ach-desc-21": "Hike to the 3,776 m summit of Mount Fuji in climbing season (Jul–Sep) and watch the goraiko sunrise.",
+                "ach-name-22": "Seongsan Ilchulbong ⛰️", "ach-desc-22": "Climb Jeju Island's crown-shaped volcanic cone and overlook the blue Pacific.",
+                "ach-name-23": "Plitvice Lakes 🏞️", "ach-desc-23": "Wander Plitvice Lakes National Park where sixteen lakes and waterfalls weave dreamlike colors.",
+                "ach-name-24": "Reynisfjara Black Sand Beach 🌊", "ach-desc-24": "Walk Vík's black sand beach beneath towering organ-pipe basalt cliffs and wild surf.",
+                "ach-name-25": "Everest Base Camp Trek 🏔️", "ach-desc-25": "Trek to Nepal's Everest Base Camp at 5,364 m and gaze upon the roof of the world.",
+                "ach-name-26": "Louvre Masterpieces 🎨", "ach-desc-26": "See the Mona Lisa, Winged Victory, and Venus de Milo at the Louvre in Paris.",
+                "ach-name-27": "British Museum Treasures 🏛️", "ach-desc-27": "Find the Rosetta Stone and the ancient Egyptian mummies at the British Museum in London.",
+                "ach-name-28": "Vatican Museums Pilgrimage ⛪", "ach-desc-28": "Gaze up at Michelangelo's Creation ceiling in the Sistine Chapel in Vatican City.",
+                "ach-name-29": "Taj Mahal Symmetry 🕌", "ach-desc-29": "Stand before the white-marble monument to eternal love in Agra, India.",
+                "ach-name-30": "Pyramids of Giza 🇪🇬", "ach-desc-30": "Behold the three great pyramids and the Sphinx on the Giza Plateau and feel millennia of civilization.",
+                "ach-name-31": "Roman Colosseum ⚔️", "ach-desc-31": "Step inside Rome's Colosseum and imagine the gladiators' brutal, heroic battles.",
+                "ach-name-32": "Great Wall Hero 🧱", "ach-desc-32": "Walk the ancient ramparts of Badaling or Mutianyu as the Great Wall snakes over the mountains.",
+                "ach-name-33": "Machu Picchu Lost City ⛰️", "ach-desc-33": "Climb into the Peruvian Andes and overlook the Inca 'city in the sky' through the morning mist.",
+                "ach-name-34": "Smiles of Angkor 🏯", "ach-desc-34": "Find the giant serene stone faces carved on the towers of Bayon Temple in Cambodia.",
+                "ach-name-35": "Statue of Liberty Visit 🗽", "ach-desc-35": "Ferry to Liberty Island and look up at the great green symbol of freedom and hope.",
+                "ach-name-36": "Acropolis of Athens 🏛️", "ach-desc-36": "Climb the Athenian hill to the Parthenon, still solemn after centuries of wars.",
+                "ach-name-37": "Stonehenge Mystery 🪨", "ach-desc-37": "Visit the Neolithic stone circle on Wiltshire's plain whose purpose remains a mystery.",
+                "ach-name-38": "Versailles Hall of Mirrors 🏰", "ach-desc-38": "Walk the opulent Hall of Mirrors with its hundreds of mirrors and crystal chandeliers.",
+                "ach-name-39": "Sagrada Família Light ⛪", "ach-desc-39": "Enter Gaudí's unfinished masterpiece in Barcelona and watch sunlight paint the columns through stained glass.",
+                "ach-name-40": "Petra Rose City 🇯🇴", "ach-desc-40": "Walk the narrow Siq to behold the Treasury carved into Jordan's rose-red cliffs.",
+                "ach-name-41": "Chichén Itzá Pyramid 🇲🇽", "ach-desc-41": "Visit the Kukulcán pyramid in the Yucatán and hear a handclap echo back like a sacred bird call.",
+                "ach-name-42": "Alhambra Palace 🏰", "ach-desc-42": "Admire the exquisite Moorish palace in Granada and its intricate Arabic geometric artistry.",
+                "ach-name-43": "Forbidden City Stroll 🏯", "ach-desc-43": "Walk the Hall of Supreme Harmony square in Beijing and feel the majesty of Ming and Qing emperors.",
+                "ach-name-44": "Kiyomizu-dera Stage 🏯", "ach-desc-44": "Step onto the nail-free wooden stage over the cliff in Kyoto amid cherry blossoms or autumn leaves.",
+                "ach-name-45": "St. Peter's Dome Climb ⛪", "ach-desc-45": "See Michelangelo's Pietà, then climb the dome to overlook the keyhole-shaped square.",
+                "ach-name-46": "Moai of Easter Island 🗿", "ach-desc-46": "Journey to Chile's Easter Island and stand before the rows of mysterious giant stone figures.",
+                "ach-name-47": "Sydney Opera House 🐚", "ach-desc-47": "See the iconic white sails of the 20th-century architectural classic on Sydney Harbour.",
+                "ach-name-48": "Himeji White Heron Castle 🏯", "ach-desc-48": "Visit Japan's finest original castle, its snow-white keep poised like a heron taking flight.",
+                "ach-name-49": "Cologne Cathedral ⛪", "ach-desc-49": "Step out of Cologne station and look up at the twin Gothic spires six hundred years in the making.",
+                "ach-name-50": "Chernobyl Exclusion Zone ☢️", "ach-desc-50": "Enter the Chernobyl zone with a licensed guide and see Pripyat's abandoned amusement park Ferris wheel.",
+                "ach-name-51": "Michelin Star Feast 🍽️", "ach-desc-51": "Book and savor a meal at a Michelin one-star or higher restaurant while traveling abroad.",
+                "ach-name-52": "Neapolitan Pizza 🍕", "ach-desc-52": "Taste a traditional wood-fired Margherita, charred outside and soft inside, in Naples.",
+                "ach-name-53": "Spanish Paella 🥘", "ach-desc-53": "Enjoy a crusty pan of seafood paella simmered in rich broth in Valencia or on the Spanish coast.",
+                "ach-name-54": "Fresh Paris Croissant 🥐", "ach-desc-54": "Buy a flaky, buttery croissant straight from the oven at a corner bakery on a Paris morning.",
+                "ach-name-55": "Mexican Street Tacos 🌮", "ach-desc-55": "Order pork or beef-tongue tacos at a street stand, loaded with cilantro, onion, and spicy salsa.",
+                "ach-name-56": "Tom Yum Goong 🍲", "ach-desc-56": "Slurp a hot-and-sour Thai shrimp soup full of herbs at a Bangkok eatery or street stall.",
+                "ach-name-57": "Tsukiji Seafood Bowl 🍣", "ach-desc-57": "Visit Tokyo's Tsukiji outer market at dawn for a bowl piled with sweet uni, ikura, and fatty tuna.",
+                "ach-name-58": "Turkish Döner Kebab 🥙", "ach-desc-58": "Have an authentic Döner in Istanbul — juicy golden roasted meat shaved into warm pita bread.",
+                "ach-name-59": "Indian Curry & Naan 🍛", "ach-desc-59": "Scoop up layered masala curry in Delhi with fresh, puffy garlic naan.",
+                "ach-name-60": "Swiss Cheese Fondue 🫕", "ach-desc-60": "Dip baguette cubes into molten cheese and pull long strings in a chalet at the foot of the Alps.",
+                "ach-name-61": "Munich Beer & Pork Knuckle 🍖", "ach-desc-61": "Order a liter of wheat beer at the Hofbräuhaus with crispy, juicy Bavarian roasted pork knuckle.",
+                "ach-name-62": "Vietnamese Phở 🍜", "ach-desc-62": "Slurp a bowl of sweet-brothed beef phở on a low plastic stool in Hanoi or Ho Chi Minh City.",
+                "ach-name-63": "English Afternoon Tea ☕", "ach-desc-63": "Enjoy a three-tier set of scones with clotted cream, sandwiches, and royal tea in London.",
+                "ach-name-64": "Peking Duck 🦆", "ach-desc-64": "Watch the chef carve glossy crispy duck at a century-old Beijing restaurant and wrap it in thin pancakes.",
+                "ach-name-65": "Brazilian Churrasco 🥩", "ach-desc-65": "Let waiters carve sizzling picanha off giant skewers onto your plate at a churrascaria in Rio.",
+                "ach-name-66": "Korean BBQ 🥓", "ach-desc-66": "Grill thick pork belly over charcoal in Seoul and wrap it in lettuce with kimchi and garlic.",
+                "ach-name-67": "Durian Challenge 🤢", "ach-desc-67": "Brave a freshly opened Musang King durian — custard-smooth but pungent — in Thailand, Malaysia, or Singapore.",
+                "ach-name-68": "Bordeaux Wine Tasting 🍷", "ach-desc-68": "Visit an old winery in Bordeaux or Tuscany, stroll the vineyards, and taste top reds in the oak-barrel cellar.",
+                "ach-name-69": "New York Hot Dog 🌭", "ach-desc-69": "Grab a classic cart hot dog with yellow mustard and sauerkraut beside Central Park.",
+                "ach-name-70": "Belgian Waffles & Chocolate 🍫", "ach-desc-70": "Enjoy a sugar-dusted Liège waffle by the Grand Place and pick up master-made truffle chocolates.",
+                "ach-name-71": "Singapore Pepper Crab 🦀", "ach-desc-71": "Feast on a giant Sri Lankan crab coated in rich black-pepper sauce at Jumbo or Lau Pa Sat.",
+                "ach-name-72": "Mediterranean Grilled Fish 🐟", "ach-desc-72": "Taste the day's catch grilled simply with olive oil, lemon, and sea salt at a Santorini cliff restaurant.",
+                "ach-name-73": "Peruvian Ceviche 🥗", "ach-desc-73": "Try Peru's national dish in Lima — fresh raw fish cured in lime juice with red onion.",
+                "ach-name-74": "Moroccan Tagine 🍲", "ach-desc-74": "Savor lamb slow-cooked with dates and apricots in a cone-lidded clay pot in a Marrakesh souk.",
+                "ach-name-75": "Collect Three 3-Michelin-Star Restaurants ⭐", "ach-desc-75": "Ultimate challenge: book and finish full chef's menus at three different three-Michelin-star restaurants around the world.",
+                "ach-name-76": "Eurail Adventure 🚞", "ach-desc-76": "Use a Eurail Pass to ride trains freely across three or more European countries.",
+                "ach-name-77": "Shinkansen Speed 🚄", "ach-desc-77": "Ride Japan's bullet train at 320 km/h and marvel at how smooth and quiet it stays.",
+                "ach-name-78": "Venice Gondola 🛶", "ach-desc-78": "Glide through Venice's ancient canals in a sleek black gondola as the gondolier sings.",
+                "ach-name-79": "Tuk-Tuk Ride 🛺", "ach-desc-79": "Weave through Bangkok or Chiang Mai traffic in a colorful, doorless tuk-tuk.",
+                "ach-name-80": "Overnight Sleeper Train 🛌", "ach-desc-80": "Fall asleep to the rhythm of the rails on an overnight sleeper and wake to foreign dawn scenery.",
+                "ach-name-81": "Route 66 Road Trip 🚗", "ach-desc-81": "Rent a car and cruise the historic Route 66, hunting retro road signs and motels.",
+                "ach-name-82": "Business Class Flight ✈️", "ach-desc-82": "Fly long-haul business class via upgrade, miles, or purchase, with lie-flat seats and fine dining.",
+                "ach-name-83": "London Double-Decker 🚌", "ach-desc-83": "Ride a red double-decker bus and claim the front seats on the upper deck for the best city views.",
+                "ach-name-84": "Cross the Equator 🌐", "ach-desc-84": "Cross the equator by ship or car and take a photo at an equatorial monument.",
+                "ach-name-85": "Mega Cruise Voyage 🚢", "ach-desc-85": "Take a Caribbean or Mediterranean mega-cruise with endless buffets and new ports each day.",
+                "ach-name-86": "Trans-Siberian Railway 🚂", "ach-desc-86": "Spend days crossing Eurasia on the world's longest railway from Vladivostok to Moscow.",
+                "ach-name-87": "San Francisco Cable Car 🚋", "ach-desc-87": "Hang off the side of a vintage cable car climbing San Francisco's steep streets to the bay views.",
+                "ach-name-88": "Scooter Through Southeast Asia 🛵", "ach-desc-88": "Rent a scooter in Chiang Mai, Bali, or Vietnam and explore blue coasts and rice-field roads.",
+                "ach-name-89": "International Ferry ⛴️", "ach-desc-89": "Cross a strait on a large car ferry — Japan–Korea, China–Korea, or across a European channel.",
+                "ach-name-90": "Walk Across a Border 🚶", "ach-desc-90": "Step across a national border on foot in the Schengen area, at Singapore–Malaysia, or US–Canada.",
+                "ach-name-91": "NYC Yellow Cab 🚕", "ach-desc-91": "Raise your hand on a Manhattan street and hail an iconic yellow cab like in the movies.",
+                "ach-name-92": "Camel Caravan 🐫", "ach-desc-92": "Ride a tall camel across the deserts of Egypt, Morocco, or Dubai like the old Silk Road traders.",
+                "ach-name-93": "Helicopter Sightseeing 🚁", "ach-desc-93": "See the Grand Canyon, Manhattan, or the Great Ocean Road from a helicopter's bird's-eye view.",
+                "ach-name-94": "Autobahn Top Speed 🏎️", "ach-desc-94": "Floor it past 180 km/h on a derestricted stretch of the German Autobahn.",
+                "ach-name-95": "Hot Air Balloon Sunrise 🎈", "ach-desc-95": "Rise with the sun in a colorful balloon over Cappadocia's fairy chimneys or the Gold Coast.",
+                "ach-name-96": "Amsterdam Canal Cruise 🛶", "ach-desc-96": "Cruise the UNESCO-listed canal ring past 17th-century gabled houses.",
+                "ach-name-97": "Icebreaker Ship Voyage 🚢", "ach-desc-97": "Ride a heavy icebreaker in Finnish Lapland or Abashiri, Hokkaido, as the bow crushes thick drift ice — hitting peak ice season and sailable seas is all up to luck.",
+                "ach-name-98": "Death Road Cycling 🚲", "ach-desc-98": "Bomb down Bolivia's North Yungas 'Death Road' with thousand-meter cliffs at your side.",
+                "ach-name-99": "Polar Zodiac Cruise 🛥️", "ach-desc-99": "Suit up in waterproofs and ride a Zodiac among giant blue icebergs in Antarctica or Alaska.",
+                "ach-name-100": "Stratospheric Balloon Flight 🚀", "ach-desc-100": "Future challenge: book a stratospheric balloon ride to 30 km altitude and see Earth's glowing blue arc.",
+                "ach-name-101": "First Hostel Stay 🎒", "ach-desc-101": "Sleep in a hostel bunk abroad and swap stories with travelers from around the world.",
+                "ach-name-102": "Capsule Hotel Night 💤", "ach-desc-102": "Sleep in a snug, futuristic sleeping pod at a Japanese capsule hotel.",
+                "ach-name-103": "European Castle Stay 🏰", "ach-desc-103": "Spend a night in a castle hotel in France, Germany, or Ireland and play lord of the manor.",
+                "ach-name-104": "Wilderness Camping 🏕️", "ach-desc-104": "Pitch a tent at a designated campground in Canada, Iceland, or Australia and camp under the stars.",
+                "ach-name-105": "Overwater Villa 🌊", "ach-desc-105": "Wake in a Maldives or Polynesian overwater villa and dive straight into jelly-clear sea from your deck.",
+                "ach-name-106": "Japanese Onsen Ryokan ♨️", "ach-desc-106": "Book a one-night-two-meals kaiseki stay, don a yukata, and soak in a secret open-air hot spring.",
+                "ach-name-107": "Airport Overnight 💤", "ach-desc-107": "Spend a night on the benches of Changi or Incheon airport during a layover or to save money.",
+                "ach-name-108": "Luxury Five-Star Hotel 🥂", "ach-desc-108": "Stay at a world-class hotel like the Ritz-Carlton, Four Seasons, or Aman with impeccable butler service.",
+                "ach-name-109": "Desert Glamping Dome 🌌", "ach-desc-109": "Sleep under a transparent dome in a luxury tent in the Sahara or Wadi Rum, stars overhead in bed.",
+                "ach-name-110": "Mountain Hut Stay 🛖", "ach-desc-110": "Overnight in an unstaffed alpine hut with bare bunks and a wood stove in the Alps or New Zealand.",
+                "ach-name-111": "African Safari Lodge 🦁", "ach-desc-111": "Stay in a luxury tented camp surrounded by wildlife inside a Kenyan or South African park.",
+                "ach-name-112": "Couchsurfing Experience 🛋️", "ach-desc-112": "Stay free on a local's couch via Couchsurfing and experience daily life with your host.",
+                "ach-name-113": "Sweden Icehotel ❄️", "ach-desc-113": "Sleep in a thermal sleeping bag on an ice bed at −5°C in a hotel sculpted entirely of ice and snow.",
+                "ach-name-114": "Aurora Glass Igloo 🔮", "ach-desc-114": "Lie in a warm bed under a heated glass dome in Finnish Lapland and watch the auroras dance above.",
+                "ach-name-115": "Cappadocia Cave Hotel 🪨", "ach-desc-115": "Stay in a room carved from ancient volcanic rock, naturally cool in summer and warm in winter.",
+                "ach-name-116": "Underwater Suite 🐠", "ach-desc-116": "Sleep in a Dubai or Sanya underwater suite as sharks and rays glide past your floor-to-ceiling window.",
+                "ach-name-117": "Unique Local Stay 🏡", "ach-desc-117": "Rent a characterful whole home — a Dutch houseboat, a century-old Kyoto machiya, or a forest cabin.",
+                "ach-name-118": "Mongolian Ger Night 🛖", "ach-desc-118": "Stay in a traditional round ger on the Mongolian steppe and taste fresh fermented mare's milk.",
+                "ach-name-119": "Monastery Lodging ⛪", "ach-desc-119": "Sleep in a monastery on the Camino or a temple lodging on Mount Koya, waking to morning bells.",
+                "ach-name-120": "Legendary Heritage Hotel 🏨", "ach-desc-120": "Stay at a century-old legend that witnessed history, like the Savoy in London or Raffles in Singapore.",
+                "ach-name-121": "Treehouse Stay 🌳", "ach-desc-121": "Sleep in a luxury treehouse high in the canopy and wake to birdsong and light through the leaves.",
+                "ach-name-122": "Sailboat Overnight ⛵", "ach-desc-122": "Spend a night aboard a catamaran on the Caribbean or Mediterranean, rocked to sleep by waves.",
+                "ach-name-123": "Container Pod Hostel 📦", "ach-desc-123": "Stay in a stylish industrial pod hostel converted from recycled shipping containers.",
+                "ach-name-124": "Null Stern Open-Air Bed 🌌", "ach-desc-124": "Sleep in Switzerland's famous wall-less, roofless Null Stern bed set in the open Alps.",
+                "ach-name-125": "Orbital Space Hotel 🚀", "ach-desc-125": "Future challenge: book a suite on a commercial space station, float in zero gravity, and gaze at Earth.",
+                "ach-name-126": "Flea Market Treasure Hunt 🛍️", "ach-desc-126": "Browse Saint-Ouen in Paris or Portobello Road in London and dig up a piece of history.",
+                "ach-name-127": "Luxury Shopping Street 👜", "ach-desc-127": "Shop the Champs-Élysées, Regent Street, or Milan's Galleria and claim your tax refund.",
+                "ach-name-128": "Handcrafted Souvenir 🎨", "ach-desc-128": "Buy a local craft — a Turkish mosaic lamp, an alpaca sweater in Peru, or hand-drawn batik in Indonesia.",
+                "ach-name-129": "Duty-Free Haul 🛒", "ach-desc-129": "Sweep the airport duty-free shops for cosmetics, local treats, or limited editions before boarding.",
+                "ach-name-130": "Haggling Victory 🤝", "ach-desc-130": "Bargain with a smile and broken English at a Thai floating market or Marrakesh medina and close the deal.",
+                "ach-name-131": "World Currency Collection 🪙", "ach-desc-131": "Keep beautiful banknotes and coins from each country to build your own little money museum.",
+                "ach-name-132": "Local Supermarket Raid 🛒", "ach-desc-132": "Skip the boutiques and raid a local Carrefour or Tesco for the cheapest authentic snacks.",
+                "ach-name-133": "Spice Market Finds 🌶️", "ach-desc-133": "Buy colorful saffron, masala, or cumin at an Indian spice market or Moroccan old town.",
+                "ach-name-134": "Mega Mall Pilgrimage 🏬", "ach-desc-134": "Visit a world-largest-class mall like Dubai Mall and get lost among aquariums and indoor waterfalls.",
+                "ach-name-135": "Outlet Shopping Spree 🛍️", "ach-desc-135": "Score discounted designer clothes and sneakers at a Premium Outlets abroad.",
+                "ach-name-136": "Street Artist Portrait 🖼️", "ach-desc-136": "Have a Montmartre or Piazza Navona artist paint your portrait, or buy a canvas of the local scenery.",
+                "ach-name-137": "Bottle of Local Spirit 🍾", "ach-desc-137": "Bring home a single malt from Scotland, champagne from Champagne, or premium Russian vodka.",
+                "ach-name-138": "Century-Old Shop Visit 🕰️", "ach-desc-138": "Seek out a craft shop, watchmaker, or pharmacy with a century of history and buy a generational classic.",
+                "ach-name-139": "Traditional Costume 👘", "ach-desc-139": "Buy a kimono or yukata in Japan, a brilliant sari in India, or a tailored silk áo dài in Vietnam.",
+                "ach-name-140": "Swiss Music Box 🎵", "ach-desc-140": "Pick a hand-carved wooden music box with a crisp mechanical melody in Interlaken.",
+                "ach-name-141": "Persian Carpet Purchase 🧶", "ach-desc-141": "Choose a hand-knotted wool carpet over endless glasses of tea at the Grand Bazaar or in Iran.",
+                "ach-name-142": "Starbucks City Mugs ☕", "ach-desc-142": "Collect the 'You Are Here' city mug from Starbucks in every new city you visit.",
+                "ach-name-143": "Postcards Home ✉️", "ach-desc-143": "Pick a beautiful postcard in each country, write your travel mood, and mail it with local stamps.",
+                "ach-name-144": "Exotic Gemstone 💎", "ach-desc-144": "Buy a royal-blue sapphire in Sri Lanka, jadeite in Myanmar, or a deep-green emerald in Colombia.",
+                "ach-name-145": "Traditional Instrument 🪕", "ach-desc-145": "Bring home an Aboriginal didgeridoo, an African drum, or a little Hawaiian ukulele.",
+                "ach-name-146": "Supermarket Tote Collection 🛍️", "ach-desc-146": "Collect canvas totes from supermarkets worldwide — Trader Joe's, Whole Foods, Monoprix.",
+                "ach-name-147": "Luxury Truffle Purchase 🍄", "ach-desc-147": "Visit a Provence or Alba truffle market in season and hand-pick a fragrant black or white truffle.",
+                "ach-name-148": "Handmade Chess Set ♟️", "ach-desc-148": "Buy an exotic hand-carved chess set of stone, metal, or fine wood at a European antique shop or market.",
+                "ach-name-149": "Meteorite or Fossil ☄️", "ach-desc-149": "Buy a genuine Sahara meteorite fragment or a Jurassic trilobite or ammonite fossil.",
+                "ach-name-150": "Auction House Bid 🖼️", "ach-desc-150": "Ultimate challenge: raise your paddle at Sotheby's or Christie's and win a coveted piece of art history.",
+                "ach-name-151": "Landmark Tourist Shot 📸", "ach-desc-151": "Take the perfect tourist photo from the best vantage point at the Eiffel Tower or Golden Gate Bridge.",
+                "ach-name-152": "Golden Sunset Shot 🌅", "ach-desc-152": "Set up your camera in Santorini, Bali, or a famous harbor and capture the sky ablaze at sundown.",
+                "ach-name-153": "Glorious Sunrise Shot 🌅", "ach-desc-153": "Rise early (or pull an all-nighter) to shoot first light over Cappadocia, Angkor Wat, or Mount Fuji.",
+                "ach-name-154": "Milky Way Long Exposure 🌌", "ach-desc-154": "Shoot a crisp arc of the Milky Way with a long exposure in a dark-sky reserve like Lake Tekapo.",
+                "ach-name-155": "Underwater Photography 📸", "ach-desc-155": "Use an action cam or dive housing to shoot yourself among colorful corals and tropical fish.",
+                "ach-name-156": "Drone God's-Eye View 🛸", "ach-desc-156": "Fly a drone where permitted — Icelandic waterfalls, American highways — for a breathtaking aerial shot.",
+                "ach-name-157": "Travel Vlog Production 📹", "ach-desc-157": "Edit your own travel vlog along the way and share it on YouTube, Instagram, or Threads.",
+                "ach-name-158": "Street Life Photography 📸", "ach-desc-158": "Document the real expressions and daily moments of locals on the streets of Havana or Varanasi.",
+                "ach-name-159": "Perfect Reflection Shot 🪞", "ach-desc-159": "Capture a landmark's flawless mirror image in a lake, a puddle, or the Taj Mahal's long pool.",
+                "ach-name-160": "Wildlife Telephoto Capture 🦁", "ach-desc-160": "Freeze a wild animal in motion with a telephoto lens on safari, a whale-watching boat, or in the bush.",
+                "ach-name-161": "Professional Travel Photoshoot 📸", "ach-desc-161": "Book a local pro photographer in Paris or Kyoto for a cinematic set of personal travel portraits.",
+                "ach-name-162": "Neon Light Trails 🌃", "ach-desc-162": "Tripod-mount and long-expose the neon and car trails at Shibuya Crossing, Times Square, or Tower Bridge.",
+                "ach-name-163": "Winter Wonderland Shot ❄️", "ach-desc-163": "Capture heavy snowfall or snow-buried fairytale villages in Shirakawa-go or a Swiss town.",
+                "ach-name-164": "Black & White Story 📷", "ach-desc-164": "Shoot a dramatic, light-and-shadow monochrome photo in an old street, ruin, or train station abroad.",
+                "ach-name-165": "Forest Light Rays 🌲", "ach-desc-165": "Capture holy crepuscular rays piercing the canopy onto misty ground in Yakushima or Redwood forests.",
+                "ach-name-166": "Volcanic Lava Shot 🌋", "ach-desc-166": "Photograph red-glowing molten lava creeping through fissures from a safe zone in Hawaii or Iceland.",
+                "ach-name-167": "Macro Details 🐜", "ach-desc-167": "Shoot an exotic insect's compound eyes or crystal dew on petals with a macro lens in the tropics.",
+                "ach-name-168": "Film Camera Journey 🎞️", "ach-desc-168": "Travel with a mechanical film camera, shoot a few rolls, and savor the grainy nostalgia after developing.",
+                "ach-name-169": "Landmark Jump Shot 🤸", "ach-desc-169": "Take a forced-perspective shot 'propping up' the Leaning Tower of Pisa, or leap high before a landmark.",
+                "ach-name-170": "City Skyline Panorama 🏙️", "ach-desc-170": "Shoot a glittering skyline of ten thousand lights from the Empire State Building or Shanghai Tower.",
+                "ach-name-171": "Lonely Road Perspective 🛣️", "ach-desc-171": "Sit safely in the middle of an endless desert highway and capture its lonely vanishing point.",
+                "ach-name-172": "Architectural Details 🏛️", "ach-desc-172": "Close-up the ribbed vaults and stone carvings of a Gothic cathedral or the brackets of an Asian temple.",
+                "ach-name-173": "Silky Waves Long Exposure 🌊", "ach-desc-173": "Slow-shutter waves crashing on black reef rocks into dreamy silk and mist.",
+                "ach-name-174": "Cherry Blossom Blizzard 🌸", "ach-desc-174": "Catch the moment wind sends thousands of pink petals swirling like snow in Kyoto, DC, or Taiwan.",
+                "ach-name-175": "Nessie Photo Evidence 🦖", "ach-desc-175": "Ultimate challenge: while staking out Loch Ness, accidentally photograph an unknown creature matching the legend.",
+                "ach-name-176": "Rio Carnival 💃", "ach-desc-176": "Watch the world's grandest, most dazzling samba parade live on Rio's Sambadrome.",
+                "ach-name-177": "Venice Carnival Masks 🎭", "ach-desc-177": "Don an exquisite Venetian mask in winter and mingle with revelers in medieval finery.",
+                "ach-name-178": "Oktoberfest 🍻", "ach-desc-178": "Stand on the benches of a Munich tent, sing with thousands, and down liter steins with pretzels.",
+                "ach-name-179": "New Year's Eve Abroad 🎆", "ach-desc-179": "Count down with hundreds of thousands at Sydney Harbour Bridge, the London Eye, or Taipei 101.",
+                "ach-name-180": "World-Class Sports Event ⚽", "ach-desc-180": "Feel a stadium erupt live at a World Cup match, the Olympics, the NBA Finals, or Wimbledon.",
+                "ach-name-181": "Holi Festival of Colors 🎨", "ach-desc-181": "Welcome spring in India by throwing colored powder and dyed water with the celebrating crowds.",
+                "ach-name-182": "Songkran Water Fight 💦", "ach-desc-182": "Grab a giant water gun in Bangkok or Chiang Mai and join the city-wide, no-mercy splash battle.",
+                "ach-name-183": "Día de los Muertos 💀", "ach-desc-183": "Join Mexico's Day of the Dead among skull makeup, marigold seas, and warmly celebrated memories.",
+                "ach-name-184": "Yi Peng Lantern Festival 🕯️", "ach-desc-184": "Watch ten thousand lanterns rise together into the night sky over Chiang Mai like a galaxy come to earth.",
+                "ach-name-185": "La Tomatina 🍅", "ach-desc-185": "Wear old clothes in Buñol and dive into the battle as tons of ripe tomatoes turn streets into red rivers.",
+                "ach-name-186": "Burning Man 🔥", "ach-desc-186": "Spend a week in the Black Rock Desert's moneyless utopia and witness the giant effigy burn.",
+                "ach-name-187": "Kyoto Gion Matsuri 🏮", "ach-desc-187": "Watch the grand yamaboko float procession — a 'moving museum' — with festival music in July Kyoto.",
+                "ach-name-188": "Pingxi Sky Lantern 🏮", "ach-desc-188": "Write wishes all over a lantern in Taiwan's Pingxi and watch its flame rise into the dark valley sky.",
+                "ach-name-189": "Coachella 🎸", "ach-desc-189": "Head to the California desert festival by the iconic Ferris wheel and catch world-class acts live.",
+                "ach-name-190": "Full Moon Party 🌕", "ach-desc-190": "Paint yourself in neon on Haad Rin Beach and dance till dawn to electronic beats under the full moon.",
+                "ach-name-191": "New Orleans Mardi Gras 🎷", "ach-desc-191": "Catch bead necklaces thrown from parade floats amid jazz at the South's most famous carnival.",
+                "ach-name-192": "Running of the Bulls 🐂", "ach-desc-192": "Watch — or join — the white-and-red crowds fleeing charging bulls through Pamplona's narrow streets.",
+                "ach-name-193": "Tomorrowland 🎧", "ach-desc-193": "Enter the world's biggest, most fantastically staged EDM festival in the Belgian town of Boom.",
+                "ach-name-194": "Glastonbury Mud & Music ⛺", "ach-desc-194": "Camp at the UK's legendary festival and rock on in wellies even when rain turns it all to mud.",
+                "ach-name-195": "Nice Carnival Flower Battle 💐", "ach-desc-195": "Watch the Riviera parade and catch fragrant blooms tossed from ornate floats in the Battle of Flowers.",
+                "ach-name-196": "Vivid Sydney 💡", "ach-desc-196": "Stroll winter Sydney as giant 3D light projections transform the harbor's buildings.",
+                "ach-name-197": "Vatican Midnight Mass ⛪", "ach-desc-197": "Attend the Pope's solemn Christmas Eve midnight mass with organ music in St. Peter's Basilica.",
+                "ach-name-198": "Notting Hill Carnival 🥁", "ach-desc-198": "Join Europe's biggest Caribbean carnival in London, swaying to steel drums with dazzling dancers.",
+                "ach-name-199": "European Christmas Market 🎄", "ach-desc-199": "Sip hot Glühwein and shop handmade wooden toys at Nuremberg or Vienna's traditional market.",
+                "ach-name-200": "Olympic Opening Ceremony 🏟️", "ach-desc-200": "Ultimate challenge: score tickets to the Games' opening ceremony and watch the cauldron ignite live.",
+                "ach-name-201": "Santorini Blue Domes 🇬🇷", "ach-desc-201": "See the postcard-perfect scene of white cliff houses and blue-domed churches over the Aegean in Oia.",
+                "ach-name-202": "Bali Beaches & Ubud 🇮🇩", "ach-desc-202": "Eat grilled seafood at sunset on Jimbaran Beach and soar on the jungle swing above Ubud.",
+                "ach-name-203": "Maldives Beach Idle 🏖️", "ach-desc-203": "Sink bare feet into flour-soft white sand at a one-island-one-resort and daydream at the tri-color sea.",
+                "ach-name-204": "Phuket Island Hopping 🏝️", "ach-desc-204": "Speedboat to Phi Phi or the 'James Bond Island' in Phang Nga Bay and snorkel with clownfish.",
+                "ach-name-205": "Hawaii Volcanoes & Hula 🌺", "ach-desc-205": "See the red glow of an active volcano, then watch hula dancers sway to ukulele on the beach.",
+                "ach-name-206": "Okinawa Blue Islands 🏖️", "ach-desc-206": "Road-trip Okinawa's main island and boat to Ishigaki, Miyako, or Zamami for that famous 'Okinawa blue'.",
+                "ach-name-207": "Mykonos White Maze 🇬🇷", "ach-desc-207": "Wander narrow whitewashed lanes draped in bougainvillea and find the iconic windmills by the sea.",
+                "ach-name-208": "Boracay Powder Sand 🏖️", "ach-desc-208": "Walk four kilometers of powder-fine White Beach and sail a paraw into the sunset.",
+                "ach-name-209": "Capri Blue Grotto 🇮🇹", "ach-desc-209": "Lie flat in a rowboat through the low cave mouth into Capri's magically glowing blue grotto.",
+                "ach-name-210": "Phu Quoc Seafood 🇻🇳", "ach-desc-210": "Find red starfish at Starfish Beach on Vietnam's largest island, then feast on grilled lobster at the night market.",
+                "ach-name-211": "Whitehaven Beach 🏝️", "ach-desc-211": "Reach Whitehaven by helicopter or sailboat to see swirling white silica sand and the heart-shaped reef.",
+                "ach-name-212": "Socotra Alien Island 🌴", "ach-desc-212": "Journey to Yemen's isolated Indian Ocean island of umbrella-shaped dragon's blood trees and otherworldly landscapes.",
+                "ach-name-213": "Fiji Time 🇫🇯", "ach-desc-213": "Fly to Fiji, stay in a traditional outer-island bure, and live the carefree rhythm of 'Fiji Time'.",
+                "ach-name-214": "Caribbean Island Cruise 🚢", "ach-desc-214": "Island-hop the Bahamas, Jamaica, and St. Martin by luxury cruise under the tropical sun.",
+                "ach-name-215": "Tristan da Cunha Voyage 🏝️", "ach-desc-215": "Board the week-long supply ship from Cape Town and land on the world's most remote inhabited island.",
+                "ach-name-216": "Semporna Water Villa 🏝️", "ach-desc-216": "Stay in a stilt villa built on the reef at Kapalai or Mabul, glass-clear water right outside your window.",
+                "ach-name-217": "Komodo Dragon Quest 🦎", "ach-desc-217": "Sail to Komodo National Park, walk its pink beach, and track Earth's largest lizard with a ranger.",
+                "ach-name-218": "Bora Bora Ultimate Luxury 🇵🇫", "ach-desc-218": "Stay overwater at the 'Pearl of the Pacific' and watch Mount Otemanu mirrored in gradient lagoons.",
+                "ach-name-219": "Seychelles Granite Beach 🇸🇨", "ach-desc-219": "Photograph the giant wind-and-wave-sculpted granite boulders of Anse Source d'Argent on La Digue.",
+                "ach-name-220": "Mauritius Underwater Waterfall 🇲🇺", "ach-desc-220": "See the stunning 'underwater waterfall' illusion from a helicopter off Mauritius's southwest coast.",
+                "ach-name-221": "Robben Island History 🇿🇦", "ach-desc-221": "Ferry from Cape Town to the prison island and see the cell where Mandela spent 18 years.",
+                "ach-name-222": "Réunion Volcano Trek 🇷🇪", "ach-desc-222": "Hike the desolate black lava fields of Piton de la Fournaise on France's Indian Ocean island, like walking on the Moon.",
+                "ach-name-223": "Lofoten Islands 🇳🇴", "ach-desc-223": "Drive the bridges and tunnels of Lofoten, shooting red fishermen's cabins beneath sheer snow peaks.",
+                "ach-name-224": "Guam Two Lovers Point 🇬🇺", "ach-desc-224": "Lock a love padlock at Two Lovers Point and overlook the deep gradient blue of the Philippine Sea.",
+                "ach-name-225": "Deserted Island Paradise 🏝️", "ach-desc-225": "Ultimate challenge: enjoy utterly private, light-pollution-free paradise time on an uninhabited island.",
+                "ach-name-226": "Skydive from 15,000 ft 🪂", "ach-desc-226": "Leap from a plane over Queenstown, Dubai's Palm, or Cairns for 60 seconds of ultimate freefall.",
+                "ach-name-227": "PADI Dive License 🎽", "ach-desc-227": "Complete the course and exams in Koh Tao, Cebu, or Kenting to earn your Open Water certification.",
+                "ach-name-228": "Bungee Jump 🪂", "ach-desc-228": "Summon your courage and dive off Kawarau Bridge — bungee's birthplace — or Macau Tower, the world's highest.",
+                "ach-name-229": "Paragliding Flight 🪂", "ach-desc-229": "Launch from a mountain with an instructor in Interlaken or Fethiye and soar like a bird over valley and sea.",
+                "ach-name-230": "White Water Rafting 🚣", "ach-desc-230": "Paddle as a team through class 3–4 rapids in New Zealand, Bali's Ayung River, or Canada.",
+                "ach-name-231": "Jungle Zip Line 🧗", "ach-desc-231": "Fly at speed between rainforest canopies on a zip line in Costa Rica or Chiang Mai.",
+                "ach-name-232": "World-Class Skiing 🏂", "ach-desc-232": "Carve world-famous powder on ski or snowboard at Zermatt, Niseko, or Whistler.",
+                "ach-name-233": "Swim with Sharks 🦈", "ach-desc-233": "Dive cage-free among reef sharks, nurse sharks, or gentle whale sharks in Hawaii, the Maldives, or Tahiti.",
+                "ach-name-234": "Sky-High Suspension Bridge 🌁", "ach-desc-234": "Cross Switzerland's Charles Kuonen bridge or Canada's Capilano above a dizzying canyon drop.",
+                "ach-name-235": "Epic Cycling Tour 🚲", "ach-desc-235": "Cycle 900 km around Taiwan, ride the Shimanami Kaido across Japan's Inland Sea, or tour across European borders.",
+                "ach-name-236": "Marathon Layover 💤", "ach-desc-236": "Survive a single 15+ hour layover and blitz the transit city on a lightning one-day tour.",
+                "ach-name-237": "Camino de Santiago 🚶", "ach-desc-237": "Walk at least 100 km of Spain's Camino over weeks with a backpack and earn the pilgrim certificate.",
+                "ach-name-238": "Mount Kinabalu Summit 🏔️", "ach-desc-238": "Climb Borneo's 4,095 m Mount Kinabalu and brave the cliff-hugging via ferrata to the top.",
+                "ach-name-239": "Piranha Fishing 🎣", "ach-desc-239": "Deep in the Amazon, bait a bamboo rod with raw beef and land a razor-toothed wild piranha.",
+                "ach-name-240": "30 Countries Milestone 🗺️", "ach-desc-240": "Check off 30 different countries or regions on the world map and set out on the next journey.",
+                "ach-name-241": "Solo Unsupported Travel 🚶", "ach-desc-241": "Fly alone to a completely unfamiliar country and handle every plan, meal, bed, and surprise yourself.",
+                "ach-name-242": "Volcano Crater Rim 🌋", "ach-desc-242": "Hike to Ijen's blue flames, or stand on a Vanuatu or Hawaii crater rim breathing sulfur above molten rock.",
+                "ach-name-243": "Devil's Pool Swim 🌊", "ach-desc-243": "In season, lie in the natural pool on the very lip of Victoria Falls above the hundred-meter cascade.",
+                "ach-name-244": "Desert Sandboarding 🏂", "ach-desc-244": "Bomb down towering dunes at 50 km/h on a sandboard in Huacachina or Dubai.",
+                "ach-name-245": "Polar Plunge 🥶", "ach-desc-245": "Jump into the frozen Baltic in a survival suit in Lapland — or plunge bare into 0°C Antarctic water.",
+                "ach-name-246": "Sailing License & Voyage ⛵", "ach-desc-246": "Earn an ASA sailing certification, then take the helm and lead a crew on the open ocean.",
+                "ach-name-247": "Lost Luggage Survival 🧳", "ach-desc-247": "Land without your checked bag, file the claim, improvise outfits, and reunite with it days later.",
+                "ach-name-248": "Son Doong Cave Expedition 🧗", "ach-desc-248": "Join the strictly limited annual expedition into Vietnam's Son Doong — the world's largest cave — and camp by its underground jungle and river.",
+                "ach-name-249": "Zero-G Flight 🚀", "ach-desc-249": "Ride a ZERO-G parabolic flight in the US for 15 rounds of 30-second true weightlessness.",
+                "ach-name-250": "World Domination 🌍", "ach-desc-250": "Ultimate challenge: mark 50+ major travel countries and regions as visited on the map.",
+                "ach-name-251": "Carolina Reaper Challenge 🌶️", "ach-desc-251": "Summon your courage and eat a whole superhot pepper or an 'inferno-level' dish in Thailand, India, or the US.",
+                "ach-name-252": "Fugu Full Course 🐡", "ach-desc-252": "Taste pufferfish sashimi, karaage, and hotpot prepared by a licensed chef in Shimonoseki or Osaka.",
+                "ach-name-253": "Hong Kong Dim Sum Cart 🥟", "ach-desc-253": "Pick har gow, siu mai, and char siu bao off the trolley at an old Hong Kong teahouse with a pot of pu-erh.",
+                "ach-name-254": "Preikestolen Hike 🪨", "ach-desc-254": "Hike to Norway's Pulpit Rock and stand on the sheer 604 m natural cliff platform above Lysefjord.",
+                "ach-name-255": "Total Solar Eclipse Chase 🌑", "ach-desc-255": "Chase the Moon's shadow into the path of totality and watch day turn to night as the corona blazes.",
+                "ach-name-256": "Seventh Continent: Antarctica 🐧", "ach-desc-256": "Cross the Drake Passage or fly in, set foot on Antarctic ice, and complete all seven continents among penguins.",
+                "ach-name-257": "Seaplane Takeoff 🛩️", "ach-desc-257": "Skim off the water in the Maldives, Vancouver, or Dubai and view atolls and coastlines from low altitude.",
+                "ach-name-258": "Qinghai–Tibet Railway 🚄", "ach-desc-258": "Ride the world's highest railway over the 5,072 m Tanggula Pass into Lhasa, past antelope and snow lakes.",
+                "ach-name-259": "Star Ferry & Ding Ding 🚋", "ach-desc-259": "Cross Victoria Harbour on the century-old Star Ferry, then hop a double-decker tram through Hong Kong's streets.",
+                "ach-name-260": "Mogao Caves Pilgrimage 🏜️", "ach-desc-260": "Enter Dunhuang's thousand-year cave shrines and view flying apsara murals and painted Buddhas by flashlight.",
+                "ach-name-261": "Registan of Samarkand 🕌", "ach-desc-261": "Stand at the center of the Silk Road square in Uzbekistan, ringed by three grand blue-tiled madrasahs.",
+                "ach-name-262": "Sea of Blue Tears 💧", "ach-desc-262": "On a moonless night, photograph the ghost-blue glow of bioluminescent 'blue tears' in the waves off Matsu or beyond.",
+                "ach-name-263": "Edinburgh Fringe 🎭", "ach-desc-263": "Hit the Royal Mile in August and binge street acts and theatre at the world's largest arts festival.",
+                "ach-name-264": "Palau Jellyfish Lake 🪼", "ach-desc-264": "Snorkel Palau's stingless Jellyfish Lake as millions of golden jellies brush gently past you.",
+                "ach-name-265": "Waitomo Black Water Rafting 🌟", "ach-desc-265": "Tube down a pitch-dark underground river in Waitomo beneath a starry sky of tens of thousands of glowworms.",
+                "ach-name-266": "Overseas Marathon Finisher 🏃", "ach-desc-266": "Run all 42.195 km of a full marathon abroad — Tokyo, Berlin, or New York — carried by foreign cheers.",
+                "ach-name-267": "Glacier Hike on Ancient Ice 🧊", "ach-desc-267": "Strap on crampons at Vatnajökull or Fox Glacier and walk with a guide among crevasses and ancient blue ice.",
+                "ach-name-268": "Century-Old Book Find 📚", "ach-desc-268": "Hunt the green bouquiniste boxes on the Seine or Charing Cross Road and buy a 100-year-old book or first edition."
+            }
+        };
+
+        function getTranslation(key, defaultValue = "") {
+            const lang = appState.language || 'zh-TW';
+            if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+                return TRANSLATIONS[lang][key];
+            }
+            return defaultValue;
+        }
+
+        function getCategoryTranslation(cat) {
+            return getTranslation("cat-" + cat, cat);
+        }
+
+        function getRegionTranslation(reg) {
+            return getTranslation("reg-" + reg, reg);
+        }
+
+        function updateStaticUITranslations() {
+            const lang = appState.language || 'zh-TW';
+            if (!TRANSLATIONS[lang]) return;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (TRANSLATIONS[lang][key]) {
+                    if (el.tagName === 'INPUT') {
+                        el.placeholder = TRANSLATIONS[lang][key];
+                    } else {
+                        el.textContent = TRANSLATIONS[lang][key];
+                    }
+                }
+            });
+
+            // Translate quick-filter badge tags
+            badgeData.forEach(badge => {
+                const tag = document.getElementById(`badgeTag-${badge.id}`);
+                if (tag) {
+                    const translatedBadgeName = getTranslation("badge-name-" + badge.id, badge.name);
+                    tag.textContent = `${badge.emoji} ${translatedBadgeName}`;
+                }
+            });
+
+            const playerName = document.getElementById('playerName');
+            if (playerName) playerName.title = getTranslation("playerNameInputTitle", "點擊修改暱稱");
+
+            updateThemeButtonUI();
+        }
+
+        function changeLanguage(lang) {
+            appState.language = lang;
+            saveState();
+            updateStaticUITranslations();
+            renderMap();
+            buildAchievements();
+            updateUI();
+        }
+
 // --- 1. Emojis and Config Databases ---
         const avatars = ["🎒", "✈️", "🌍", "🏕️", "📸", "🚢", "🛶", "🦁", "🐢", "🍕", "🍜", "🌮", "🍷", "🗽", "🗼", "🏰"];
 
@@ -4849,6 +5516,7 @@
             visitedCountries: [],
             customAchievements: [],
             theme: "dark",
+            language: "zh-TW",
             registered: false
         };
 
@@ -5195,14 +5863,15 @@
             countriesData.forEach(pref => {
                 const cell = document.createElement('div');
                 cell.className = 'pref-cell';
-                cell.textContent = pref.name;
+                cell.textContent = getTranslation("country-short-" + pref.id, pref.name);
                 cell.style.gridRow = `${pref.row} / span ${pref.rowSpan || 1}`;
                 cell.style.gridColumn = `${pref.col} / span ${pref.colSpan || 1}`;
                 cell.style.backgroundColor = pref.color + '22';
                 cell.style.borderColor = pref.color;
                 cell.setAttribute('role', 'button');
                 cell.setAttribute('tabindex', '0');
-                cell.setAttribute('aria-label', pref.name);
+                cell.setAttribute('aria-label', getTranslation("country-name-" + pref.id, pref.name));
+                cell.title = getTranslation("country-name-" + pref.id, pref.name);
 
                 cell.onclick = () => toggleCountry(pref.id);
                 cell.onkeydown = (e) => {
@@ -5240,7 +5909,8 @@
 
             if (added) {
                 appState.visitedCountries.push(countryId);
-                showNotification("拜訪打卡", `已新增到訪足跡：${countryObj.name}`, "📍");
+                const countryName = getTranslation("country-name-" + countryId, countryObj.name);
+                showNotification(getTranslation("prefUnlockTitle", "拜訪打卡"), getTranslation("prefUnlockDesc", "已新增到訪足跡：{name}").replace("{name}", countryName), "📍");
             } else {
                 appState.visitedCountries.splice(idx, 1);
             }
@@ -5291,7 +5961,7 @@
                 widget.className = `region-badge ${activeFilters.search === reg ? 'active' : ''}`;
                 widget.innerHTML = `
                     <div class="region-badge-header">
-                        <span>${reg}</span>
+                        <span>${getRegionTranslation(reg)}</span>
                         <span>${visited}/${total}</span>
                     </div>
                     <div class="region-badge-bar">
@@ -5309,7 +5979,7 @@
             const visitedCount = appState.visitedCountries.length;
             const totalCountries = globalCountriesList.length;
             const pctAll = Math.round((visitedCount / totalCountries) * 100);
-            document.getElementById('totalPrefCount').textContent = `已踩點 ${visitedCount} / ${totalCountries}`;
+            document.getElementById('totalPrefCount').textContent = `${getTranslation("prefDisplayPrefix", "已踩點")} ${visitedCount} / ${totalCountries}`;
             document.getElementById('totalPrefPercentage').textContent = `${pctAll}%`;
         }
 
@@ -5379,7 +6049,9 @@
                 let countriesInReg = globalCountriesList.filter(c => c.region === reg);
                 
                 if (searchQuery) {
-                    countriesInReg = countriesInReg.filter(c => c.name.toLowerCase().includes(searchQuery));
+                    countriesInReg = countriesInReg.filter(c =>
+                        c.name.toLowerCase().includes(searchQuery) ||
+                        getTranslation("country-name-" + c.id, c.name).toLowerCase().includes(searchQuery));
                 }
                 
                 if (searchQuery && countriesInReg.length === 0) {
@@ -5397,7 +6069,7 @@
                 group.innerHTML = `
                     <div class="continent-header" onclick="toggleContinentCollapse(this)">
                         <div class="continent-info">
-                            <span class="continent-title">${getContinentEmoji(reg)} ${reg}</span>
+                            <span class="continent-title">${getContinentEmoji(reg)} ${getRegionTranslation(reg)}</span>
                             <span class="continent-progress-pill">${visitedInReg} / ${totalInReg}</span>
                         </div>
                         <span class="continent-toggle-icon">${isExpanded ? '▼' : '►'}</span>
@@ -5414,12 +6086,12 @@
                     label.className = `country-checkbox-item ${isChecked ? 'checked' : ''}`;
                     
                     const isOnGrid = countriesData.some(p => p.id === c.id);
-                    const gridIndicator = isOnGrid ? '<span class="grid-indicator" title="此國家在網格地圖上">🗺️</span>' : '';
-                    
+                    const gridIndicator = isOnGrid ? `<span class="grid-indicator" title="${getTranslation("gridIndicatorTitle", "此國家在網格地圖上")}">🗺️</span>` : '';
+
                     label.innerHTML = `
                         <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleCountry('${c.id}')">
                         <span class="country-checkbox-custom"></span>
-                        <span class="country-name">${c.name}</span>
+                        <span class="country-name">${getTranslation("country-name-" + c.id, c.name)}</span>
                         ${gridIndicator}
                     `;
                     grid.appendChild(label);
@@ -5472,7 +6144,8 @@
                 const xLabel = cx + Math.cos(angleAt(i)) * opts.labelDist;
                 const yLabel = cy + Math.sin(angleAt(i)) * (opts.labelDist + (opts.labelYExtra || 0));
                 ctx.fillStyle = opts.labelColor;
-                const label = opts.withEmojis ? `${CATEGORY_EMOJIS[CATEGORIES[i]]}${CATEGORIES[i]}` : CATEGORIES[i];
+                const catName = getCategoryTranslation(CATEGORIES[i]);
+                const label = opts.withEmojis ? `${CATEGORY_EMOJIS[CATEGORIES[i]]}${catName}` : catName;
                 ctx.fillText(label, xLabel, yLabel);
             }
 
@@ -5589,10 +6262,10 @@
             const btnIcon = document.getElementById('themeToggleIcon');
             
             if (appState.theme === 'light') {
-                btnText.textContent = "切換深色";
+                btnText.textContent = getTranslation("themeToggleTextDark", "切換深色");
                 btnIcon.textContent = "🌙";
             } else {
-                btnText.textContent = "切換淺色";
+                btnText.textContent = getTranslation("themeToggleTextLight", "切換淺色");
                 btnIcon.textContent = "☀️";
             }
         }
@@ -5666,7 +6339,7 @@
                 header.className = 'category-header';
                 header.innerHTML = `
                     <div class="category-info">
-                        <span class="category-title">${getCategoryEmoji(cat)} ${cat}</span>
+                        <span class="category-title">${getCategoryEmoji(cat)} ${getCategoryTranslation(cat)}</span>
                         <span class="category-progress-pill">0 / ${inCat.length}</span>
                     </div>
                     <span class="category-toggle-icon">▼</span>
@@ -5701,7 +6374,7 @@
                             <div class="ach-name"></div>
                             <div class="ach-desc"></div>
                         </div>
-                        ${ach.hidden ? '<div class="hidden-overlay"><span>🔒 STEAM 隱藏成就</span></div>' : ''}
+                        ${ach.hidden ? `<div class="hidden-overlay"><span>${getTranslation("hiddenOverlayText", "🔒 STEAM 隱藏成就")}</span></div>` : ''}
                     `;
 
                     const checkbox = card.querySelector('.ach-checkbox');
@@ -5716,9 +6389,11 @@
 
                     const nameEl = card.querySelector('.ach-name');
                     const descEl = card.querySelector('.ach-desc');
+                    const translatedName = getTranslation("ach-name-" + ach.id, ach.name);
+                    const translatedDesc = getTranslation("ach-desc-" + ach.id, ach.desc);
                     if (!ach.hidden) {
-                        nameEl.textContent = ach.name;
-                        descEl.textContent = ach.desc;
+                        nameEl.textContent = translatedName;
+                        descEl.textContent = translatedDesc;
                     }
 
                     achCardRefs[ach.id] = {
@@ -5727,7 +6402,8 @@
                         nameEl,
                         descEl,
                         overlay: card.querySelector('.hidden-overlay'),
-                        searchText: (ach.name + '\n' + ach.desc).toLowerCase()
+                        // Search text covers both the original zh and translated strings
+                        searchText: (ach.name + '\n' + ach.desc + '\n' + translatedName + '\n' + translatedDesc).toLowerCase()
                     };
                     grid.appendChild(card);
                 });
@@ -5758,8 +6434,8 @@
 
                 if (ach.hidden) {
                     refs.card.classList.toggle('hidden-ach', !isDone);
-                    refs.nameEl.textContent = isDone ? ach.name : '??? 隱藏成就';
-                    refs.descEl.textContent = isDone ? ach.desc : '解鎖或滑鼠懸停以揭曉內容。';
+                    refs.nameEl.textContent = isDone ? getTranslation("ach-name-" + ach.id, ach.name) : getTranslation("hiddenAchName", '??? 隱藏成就');
+                    refs.descEl.textContent = isDone ? getTranslation("ach-desc-" + ach.id, ach.desc) : getTranslation("hiddenAchDesc", '解鎖或滑鼠懸停以揭曉內容。');
                     if (refs.overlay) refs.overlay.style.display = isDone ? 'none' : '';
                 }
             });
@@ -5775,8 +6451,9 @@
 
         function matchesFilters(ach, done, matchPrefNames) {
             if (activeFilters.search.length > 0) {
-                const textMatch = achCardRefs[ach.id].searchText.includes(activeFilters.search);
-                const prefMatch = matchPrefNames.some(n => ach.desc.includes(n) || ach.name.includes(n));
+                const searchText = achCardRefs[ach.id].searchText;
+                const textMatch = searchText.includes(activeFilters.search);
+                const prefMatch = matchPrefNames.some(n => searchText.includes(n));
                 if (!textMatch && !prefMatch) return false;
             }
 
@@ -5795,9 +6472,14 @@
         }
 
         function applyFilters(done = new Set(appState.checkedAchievements)) {
-            // Prefecture/region names matching the search term, resolved once per pass
+            // Country/region names matching the search term (zh + translated), resolved once per pass
             const matchPrefNames = activeFilters.search.length > 0
-                ? countriesData.filter(p => p.region.includes(activeFilters.search) || p.name.includes(activeFilters.search)).map(p => p.name)
+                ? countriesData.filter(p =>
+                        p.region.includes(activeFilters.search) ||
+                        getRegionTranslation(p.region).toLowerCase().includes(activeFilters.search) ||
+                        p.name.includes(activeFilters.search) ||
+                        getTranslation("country-name-" + p.id, p.name).toLowerCase().includes(activeFilters.search))
+                    .map(p => [p.name.toLowerCase(), getTranslation("country-name-" + p.id, p.name).toLowerCase()]).flat()
                 : [];
 
             CATEGORIES.forEach(cat => {
@@ -5868,9 +6550,9 @@
                         <div class="ach-meta">
                             <span class="ach-difficulty-stars">${stars}</span>
                             <span class="custom-ach-tools">
-                                <span class="rarity-pill rarity-custom">自訂</span>
-                                <button class="custom-ach-tool-btn" title="編輯" aria-label="編輯自訂成就">✏️</button>
-                                <button class="custom-ach-tool-btn" title="刪除" aria-label="刪除自訂成就">🗑️</button>
+                                <span class="rarity-pill rarity-custom">${getTranslation("customAchLabel", "自訂")}</span>
+                                <button class="custom-ach-tool-btn" title="${getTranslation("editBtnTitle", "編輯")}" aria-label="編輯自訂成就">✏️</button>
+                                <button class="custom-ach-tool-btn" title="${getTranslation("deleteBtnTitle", "刪除")}" aria-label="刪除自訂成就">🗑️</button>
                             </span>
                         </div>
                         <div class="ach-name"></div>
@@ -5879,7 +6561,7 @@
                 `;
                 // User-entered text goes in via textContent, never innerHTML
                 card.querySelector('.ach-name').textContent = c.name;
-                card.querySelector('.ach-desc').textContent = c.desc || '由你親自訂立的專屬成就。';
+                card.querySelector('.ach-desc').textContent = c.desc || getTranslation("customAchDefaultDesc", '由你親自訂立的專屬成就。');
 
                 const checkbox = card.querySelector('.ach-checkbox');
                 checkbox.checked = c.done;
@@ -6479,27 +7161,27 @@
             <h3 style="margin-top:0;" id="customAchModalTitle">🌟 新增自訂成就</h3>
             <div style="display:flex; flex-direction:column; gap:14px; margin: 16px 0 20px 0;">
                 <div class="custom-form-field">
-                    <label for="customAchName">成就名稱（必填，30 字內）</label>
-                    <input type="text" id="customAchName" class="custom-form-input" maxlength="30" placeholder="例如：在扭蛋店一次扭中隱藏款 🎰">
+                    <label for="customAchName" data-i18n="customAchNameLabel">成就名稱（必填，30 字內）</label>
+                    <input type="text" id="customAchName" class="custom-form-input" maxlength="30" data-i18n="customAchNamePlaceholder" placeholder="例如：在扭蛋店一次扭中隱藏款 🎰">
                 </div>
                 <div class="custom-form-field">
-                    <label for="customAchDesc">成就描述（選填，60 字內）</label>
-                    <input type="text" id="customAchDesc" class="custom-form-input" maxlength="60" placeholder="記下這個成就的達成條件或背後的故事...">
+                    <label for="customAchDesc" data-i18n="customAchDescLabel">成就描述（選填，60 字內）</label>
+                    <input type="text" id="customAchDesc" class="custom-form-input" maxlength="60" data-i18n="customAchDescPlaceholder" placeholder="記下這個成就的達成條件或背後的故事...">
                 </div>
                 <div class="custom-form-field">
-                    <label for="customAchDiff">難度星級</label>
+                    <label for="customAchDiff" data-i18n="customAchDiffLabel">難度星級</label>
                     <select id="customAchDiff" class="select-filter" style="width:100%;">
-                        <option value="1">★☆☆☆☆ (輕鬆達成)</option>
-                        <option value="2">★★☆☆☆ (小有挑戰)</option>
-                        <option value="3" selected>★★★☆☆ (需要努力)</option>
-                        <option value="4">★★★★☆ (相當困難)</option>
-                        <option value="5">★★★★★ (畢生難忘)</option>
+                        <option value="1" data-i18n="customAchDiff1">★☆☆☆☆ (輕鬆達成)</option>
+                        <option value="2" data-i18n="customAchDiff2">★★☆☆☆ (小有挑戰)</option>
+                        <option value="3" selected data-i18n="customAchDiff3">★★★☆☆ (需要努力)</option>
+                        <option value="4" data-i18n="customAchDiff4">★★★★☆ (相當困難)</option>
+                        <option value="5" data-i18n="customAchDiff5">★★★★★ (畢生難忘)</option>
                     </select>
                 </div>
             </div>
             <div class="share-actions">
-                <button class="btn btn-accent" onclick="saveCustomAchievement()">儲存</button>
-                <button class="btn" onclick="closeCustomAchModal()">取消</button>
+                <button class="btn btn-accent" onclick="saveCustomAchievement()" data-i18n="saveBtn">儲存</button>
+                <button class="btn" onclick="closeCustomAchModal()" data-i18n="cancelBtn">取消</button>
             </div>
         </div>
     </div>
@@ -6507,21 +7189,21 @@
     <!-- Character Registration Modal -->
     <div class="avatar-picker-backdrop" id="charRegisterModal" style="display: none;">
         <div class="avatar-picker-modal" style="max-width: 450px;">
-            <h2 style="margin-top:0; color: var(--accent-red); font-weight:900;">🎒 探險家登錄</h2>
-            <p style="font-size:13px; color:var(--text-secondary); margin-bottom:20px;">
+            <h2 style="margin-top:0; color: var(--accent-red); font-weight:900;" data-i18n="registerTitle">🎒 探險家登錄</h2>
+            <p style="font-size:13px; color:var(--text-secondary); margin-bottom:20px;" data-i18n="registerDesc">
                 歡迎來到地球旅行成就系統！請為您的手帳進行首次角色登錄：
             </p>
-            
+
             <div style="display:flex; flex-direction:column; gap:16px; align-items:center; margin-bottom:20px; text-align:left;">
-                <div style="font-size:12px; font-weight:800; color:var(--text-secondary); align-self:flex-start;">1. 選擇起手頭像</div>
+                <div style="font-size:12px; font-weight:800; color:var(--text-secondary); align-self:flex-start;" data-i18n="registerStep1">1. 選擇起手頭像</div>
                 <div class="avatar-picker-grid" id="registerAvatarGrid" style="margin:5px 0; width:100%;"></div>
-                
-                <div style="font-size:12px; font-weight:800; color:var(--text-secondary); align-self:flex-start;">2. 輸入您的暱稱</div>
-                <input type="text" id="registerNameInput" placeholder="例如：環球旅人小明..." maxlength="15" 
+
+                <div style="font-size:12px; font-weight:800; color:var(--text-secondary); align-self:flex-start;" data-i18n="registerStep2">2. 輸入您的暱稱</div>
+                <input type="text" id="registerNameInput" data-i18n="registerPlaceholder" placeholder="例如：環球旅人小明..." maxlength="15"
                        style="width:100%; padding:12px; font-size:16px; font-weight:800; text-align:center; border-radius:8px; border:2px solid var(--border-color); background:var(--bg-primary); color:var(--text-primary); outline:none;">
             </div>
-            
-            <button class="btn btn-accent" style="width:100%; padding:14px; font-size:14px; font-weight:900; justify-content:center;" onclick="completeRegistration()">
+
+            <button class="btn btn-accent" style="width:100%; padding:14px; font-size:14px; font-weight:900; justify-content:center;" onclick="completeRegistration()" data-i18n="registerBtn">
                 🎮 登錄完成，開始冒險！
             </button>
         </div>
