@@ -10,10 +10,10 @@
 
 ## 🌐 線上使用網址
 
-👉 **[立即開始你的台灣旅行成就挑戰](https://ivanusto.github.io/taiwan-travel-achievement-list/)**
+👉 **[立即開始你的地球旅行成就挑戰](https://ivanusto.github.io/travel-achievement-list/)**
 
 * 專案進度會自動儲存在您瀏覽器的本地快取（LocalStorage）中，隱私安全無虞。
-* 建議將此網址加入瀏覽器書籤，以便隨時記錄您的台灣旅行足跡！
+* 建議將此網址加入瀏覽器書籤，以便隨時記錄您的地球旅行足跡！
 
 ---
 
